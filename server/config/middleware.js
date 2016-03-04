@@ -4,6 +4,9 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('./localAuth.js');
 var User = require('../../db/models').User;
+var fbAuth = require('./fbauth')
+var LocalStrategy2 = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function (app, express) {
 
@@ -35,6 +38,55 @@ module.exports = function (app, express) {
       return done(err);
     });
   });
+
+
+  //facebook
+  app.get('/auth/facebook',
+    passport.authenticate('facebook', {scope: ['email']}));
+  //facebook
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/signIn' }),
+      function(req, res) {
+    // Successful authentication, redirect home.
+      res.redirect('/#/isLoggedIn');
+      //return done(null, user);
+  });
+
+  //facebook
+  passport.use(new FacebookStrategy({
+      clientID: fbAuth.facebookAuth.clientID,
+      clientSecret: fbAuth.facebookAuth.clientSecret,
+      callbackURL: fbAuth.facebookAuth.callbackURL,
+      profileFields: ['id', 'displayName', 'photos', 'email']
+    },
+    function(accessToken, refreshToken, profile, done) {
+      process.nextTick(function(){
+        User.findOne({ where: { email: profile.emails[0].value } })
+          .then(function (user) {
+            if (!user) {
+              User.create({
+                username: profile._json.name,
+                email: profile.emails[0].value,
+                password: profile._json.name
+              })
+              .then(function (user){
+                return {username: user.username, email: user.email}
+              }).catch(function(err){
+                console.log('Error creating user: ', err.message);
+                return
+              })
+            } else if(user) {
+              return done(null, user);
+            }
+          })
+          .catch(function(err) {
+            return done(err);
+          });
+      })
+    }
+  ));
+  
+
 
   app.use('/users', userRouter);
   app.use('/sessions', sessionRouter);
