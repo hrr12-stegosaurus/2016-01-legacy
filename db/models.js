@@ -36,6 +36,12 @@ User.beforeCreate(function(user, options) {
   user.password = user.hashPassword();
 });
 
+var Review = orm.define('Review', {
+  rating: Sequelize.INTEGER
+});
+
+Review.belongsTo(User);
+
 var Session = orm.define('Session', {
   topic: Sequelize.STRING,
   description: Sequelize.STRING,
