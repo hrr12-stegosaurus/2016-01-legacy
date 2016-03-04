@@ -3,11 +3,11 @@
 //         //
 
 var Sequelize = require('sequelize');
-// if (process.env.DEPLOYED === 'true'){
-//   var orm = new Sequelize(process.env.JAWSDB_URL);
-// } else {
+if (process.env.DEPLOYED === 'true'){
+  var orm = new Sequelize(process.env.JAWSDB_URL);
+} else {
   var orm = new Sequelize('learnItNowdb', 'root', '');
-// }
+}
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
@@ -65,7 +65,7 @@ Calendar.belongsTo(Session);
 User.sync();
 Session.sync();
 Calendar.sync();
-Review.snyc();
+Review.sync();
 
 exports.User = User;
 exports.Session = Session;
