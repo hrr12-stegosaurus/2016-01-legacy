@@ -62,6 +62,7 @@ Calendar.sync();
 
 exports.User = User;
 exports.Session = Session;
+exports.Calendar = Calendar;
 
 
 
