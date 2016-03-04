@@ -26,6 +26,7 @@
 
     &nbsp;&nbsp;<label>Time&nbsp;&nbsp;</label>
     <select ng-model="myTime">
+      <option value="">Please Select</option>
       <option value="12:00:00">12:00 PM</option>
       <option value="12:30:00">12:30 PM</option>
       <option value="13:00:00">1:00 PM</option>
@@ -79,9 +80,9 @@
     <br>
     <br>
     <hr>
-    <table>
+    <table ng-show="events.length">
       <tbody>
-      <h4>Selected Session Date/Times</h4>
+      Selected Session Date/Times
       <tr ng-repeat="event in events">
           <td>{{ event.date | date:'longDate' }}</td>
           <td>@ {{ event.time }}</td>

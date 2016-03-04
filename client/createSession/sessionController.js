@@ -60,7 +60,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
 
 .controller('CreateSessionController', function ($scope, Session, Auth, $window) {
   $scope.session = {};
-  // event is an array of objects w 2 properties: date and time
+  // event is an array of session time objects w 3 properties: id, date, and time
   $scope.events = [];
   $scope.count = 1;
   $scope.myDate = new Date();
@@ -92,9 +92,8 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
 
   $scope.createSession = function (session) {
     console.log('clicked');
-    console.log(session);
     session.startTime = $scope.events;
-    console.log(session.startTime);
+    console.log(session);
     /*formatDate($scope.myDate, $scope.time);*/
 
     // attaches UserId to session instance that gets created
