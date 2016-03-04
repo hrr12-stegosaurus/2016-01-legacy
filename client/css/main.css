@@ -334,9 +334,17 @@ textarea {
   margin: 10px 0 0 25px;
 }
 
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
 .add-date {
   margin-left: 10px;
+}
 
+.remove-date {
+  margin-left: 50px;
 }
 
 /***** responsive styles *****/

@@ -79,10 +79,16 @@
     <br>
     <br>
     <hr>
-      <div ng-repeat="event in events">
-        {{event.date | date:'longDate'}} | {{event.time}}
-        <button ng-click="deleteEvent(event)" type="button" class="add-date">Remove</button>
-      </div>
+    <table>
+      <tbody>
+      <h4>Selected Session Date/Times</h4>
+      <tr ng-repeat="event in events">
+          <td>{{ event.date | date:'longDate' }}</td>
+          <td>@ {{ event.time }}</td>
+          <td><button ng-click="deleteEvent(event)" type="button" class="remove-date">Remove</button></td>
+       </tr>
+    </tbody>
+    </table>
     <hr>
     <br>
     <button class="submit">Create Session</button>
