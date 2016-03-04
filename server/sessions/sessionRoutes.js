@@ -10,6 +10,5 @@ module.exports = function (app){
   
   app.put('/', sessionController.updateStatus);
   
-  // not used, not tested
   app.delete('/', sessionController.deleteSession);
 };

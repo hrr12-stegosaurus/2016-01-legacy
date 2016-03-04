@@ -53,11 +53,18 @@ module.exports.updateStatus = function (req, res){
   });
 };
 
-// not implemented, not tested
 module.exports.deleteSession = function (req, res){
-  Session.findById(req.id).then(function (session){
+  Session.findById(req.body.id).then(function (session){
     return session.destroy();
   }).then(function(){
+    Session.findAll({}).then(function (sessions) {
+      if (sessions){
+        res.json(sessions);
+      } else {
+        console.log('No sessions found');
+        res.end();
+      }
+    })
     console.log('Session was deleted.');
   });
 };
