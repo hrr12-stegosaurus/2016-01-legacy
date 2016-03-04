@@ -37,6 +37,10 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
     })
   }
 
+  $scope.review = function (rating) {
+    
+  }
+
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {
