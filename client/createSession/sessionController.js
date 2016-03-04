@@ -1,4 +1,5 @@
 
+
 myApp.controller('SessionController', function ($scope, Session, Auth) {
   $
   $scope.sessions = [];
