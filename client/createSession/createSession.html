@@ -25,7 +25,8 @@
     <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate"></md-datepicker>
 
     &nbsp;&nbsp;<label>Time&nbsp;&nbsp;</label>
-    <select ng-model="time">
+    <select ng-model="myTime">
+      <option value="">Please Select</option>
       <option value="12:00:00">12:00 PM</option>
       <option value="12:30:00">12:30 PM</option>
       <option value="13:00:00">1:00 PM</option>
@@ -75,7 +76,21 @@
       <option value="11:00:00">11:00 AM</option>
       <option value="11:30:00">11:30 AM</option>
     </select>
+    <button ng-click="addEvent()" type="button" class="add-date">Add</button>
     <br>
+    <br>
+    <hr>
+    <table ng-show="events.length">
+      <tbody>
+      Selected Session Date/Times
+      <tr ng-repeat="event in events">
+          <td>{{ event.date | date:'longDate' }}</td>
+          <td>@ {{ event.time }}</td>
+          <td><button ng-click="deleteEvent(event)" type="button" class="remove-date">Remove</button></td>
+       </tr>
+    </tbody>
+    </table>
+    <hr>
     <br>
     <button class="submit">Create Session</button>
   </form>
