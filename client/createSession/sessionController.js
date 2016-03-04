@@ -60,6 +60,8 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
 
 .controller('CreateSessionController', function ($scope, Session, Auth, $window) {
   $scope.session = {};
+  // event is an array of objects w 2 properties: date and time
+  $scope.events = [];
   $scope.myDate = new Date();
   $scope.minDate = new Date();
 
@@ -71,6 +73,10 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
     var year = date[3];
 
     return year + '-' + month + '-' + day + ' ' + time;
+  };
+
+  $scope.addEvent = function(){
+    $scope.events.push({date: $scope.myDate, time: $scope.myTime})
   };
 
   $scope.createSession = function (session) {
