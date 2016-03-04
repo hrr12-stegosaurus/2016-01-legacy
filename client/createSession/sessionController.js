@@ -62,8 +62,10 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   $scope.session = {};
   // event is an array of objects w 2 properties: date and time
   $scope.events = [];
+  $scope.count = 1;
   $scope.myDate = new Date();
   $scope.minDate = new Date();
+  $scope.id = null;
 
   var formatDate = function (date, time) {
     date = date.toString().split(' ');
@@ -76,8 +78,17 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   };
 
   $scope.addEvent = function(){
-    $scope.events.push({date: $scope.myDate, time: $scope.myTime})
+    $scope.id = $scope.count++;
+    $scope.events.push({id:$scope.id, date: $scope.myDate, time: $scope.myTime})
   };
+
+  $scope.deleteEvent = function(event){
+    for(var i = 0; i < $scope.events.length; i++){
+      if($scope.events[i].id === event.id){
+        $scope.events.splice(i, 1);
+      }
+    }
+  }
 
   $scope.createSession = function (session) {
     console.log('clicked');

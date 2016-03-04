@@ -81,6 +81,7 @@
     <hr>
       <div ng-repeat="event in events">
         {{event.date | date:'longDate'}} | {{event.time}}
+        <button ng-click="deleteEvent(event)" type="button" class="add-date">Remove</button>
       </div>
     <hr>
     <br>
