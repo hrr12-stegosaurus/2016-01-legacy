@@ -40,8 +40,6 @@ var Review = orm.define('Review', {
   rating: Sequelize.INTEGER
 });
 
-Review.belongsTo(User);
-
 var Session = orm.define('Session', {
   topic: Sequelize.STRING,
   description: Sequelize.STRING,
@@ -58,17 +56,27 @@ var Calendar = orm.define('Calendar', {
 
 User.hasMany(Session);
 Session.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 Session.hasMany(Calendar);
 Calendar.belongsTo(Session);
 
 User.sync();
 Session.sync();
+<<<<<<< 0d623bdef92b977fc8d3dfe65cd38a9361879ab2
 Calendar.sync();
 
 exports.User = User;
 exports.Session = Session;
 exports.Calendar = Calendar;
+=======
+Review.snyc();
+
+exports.User = User;
+exports.Session = Session;
+exports.Review = Review;
+>>>>>>> (feat) Define reviews table.
 
 
 

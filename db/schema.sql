@@ -9,6 +9,12 @@ CREATE TABLE users (
   password VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE reviews (
+  reviewID INT PRIMARY KEY AUTO_INCREMENT,
+  rating INT(1) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
 CREATE TABLE sessions (
   sessionId INT PRIMARY KEY AUTO_INCREMENT,
   userId INT, 
@@ -19,5 +25,6 @@ CREATE TABLE sessions (
   status BOOLEAN NOT NULL,
   FOREIGN KEY (userId) REFERENCES users(userId)
 );
+
 
 -- INSERT users (userId, username, email, password) VALUES ('12345', 'tinymonster', 'password123');
