@@ -80,7 +80,11 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   };
 
   $scope.createSession = function (session) {
-    session.startTime = formatDate($scope.myDate, $scope.time);
+    console.log('clicked');
+    console.log(session);
+    session.startTime = $scope.events;
+    console.log(session.startTime);
+    /*formatDate($scope.myDate, $scope.time);*/
 
     // attaches UserId to session instance that gets created
     Auth.getSignedInUser().then(function (user){
