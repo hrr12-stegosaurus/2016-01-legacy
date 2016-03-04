@@ -10,6 +10,19 @@ myApp.factory('Session', function($http, $location) {
       return session.data;
     });
   };
+
+  var deleteSession = function(session, callback) {
+    return $http({
+      method: 'DELETE',
+      url: '/sessions',
+      data: session,
+      headers: {"Content-Type": "application/json;charset=utf-8"}
+    })
+    .then(function(session) {
+      callback(session.data);
+    })
+  }
+  
   var getSessions = function() {
     return $http({
       method: 'GET',
@@ -43,6 +56,7 @@ myApp.factory('Session', function($http, $location) {
 
   return {
     createSession: createSession,
+    deleteSession: deleteSession,
     getSessions: getSessions,
     updateStatus: updateStatus,
     register: register
@@ -82,8 +96,7 @@ myApp.factory('Auth', function ($http, $location, $window) {
     .then(function (user) {
       return user.data;
     });
-  };
-  
+  }; 
   
   var isLoggedIn = function() {
     return $http({

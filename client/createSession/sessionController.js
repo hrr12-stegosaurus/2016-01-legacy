@@ -1,5 +1,5 @@
 
-myApp.controller('SessionController', function ($scope, Session) {
+myApp.controller('SessionController', function ($scope, Session, Auth) {
   $
   $scope.sessions = [];
   $scope.getSessions = function () {
@@ -26,6 +26,16 @@ myApp.controller('SessionController', function ($scope, Session) {
     });
   };
 
+  $scope.delete = function (session) {
+    Auth.getSignedInUser().then(function (user){
+      if(session.User.id === user.data.UserId) {
+        Session.deleteSession(session, function(data) {
+          $scope.sessions = data;
+        });
+      }
+    })
+  }
+  
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {
@@ -87,5 +97,7 @@ myApp.controller('SessionController', function ($scope, Session) {
     }
   };
   $scope.isLoggedIn();
+
+  $
 });
 
