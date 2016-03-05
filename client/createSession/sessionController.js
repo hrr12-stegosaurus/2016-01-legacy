@@ -1,8 +1,14 @@
+<<<<<<< 0d230754b4f3da54b76c83a30b72b715c7d61638
 
 
 myApp.controller('SessionController', function ($scope, Session, Auth) {
 
+=======
+myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
+ 
+>>>>>>> (feat) Create server route and controller for review submission. Store reviews in database.
   $scope.sessions = [];
+  $scope.review = { rating: null };
   $scope.getSessions = function () {
     Session.getSessions()
     .then(function (sessions) {
@@ -35,12 +41,13 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
         });
       }
     })
-  }
+  };
 
-  $scope.review = function (rating) {
-    
-  }
-
+  $scope.submitReview = function (user) {
+    var rating = $scope.review.rating;
+    Review.sendReviewToServer({rating, user});
+  };
+  
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {

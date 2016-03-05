@@ -170,3 +170,22 @@ myApp.factory('Auth', function ($http, $location, $window) {
     setLoggedIn: setLoggedIn
   };
 });
+
+myApp.factory('Review', function($http, $location) {
+
+  var sendReviewToServer = function(review) {
+    return $http({
+      method: 'POST',
+      url: '/reviews',
+      data: review
+    })
+    .then(function(review) {
+      return review;
+    });
+  };
+
+  return {
+    sendReviewToServer: sendReviewToServer
+  };
+
+});

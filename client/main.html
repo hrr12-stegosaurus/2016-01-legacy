@@ -39,14 +39,14 @@
       <li class="review">
         <a>Want to rate {{session.User.username}}?</a>
         <form>
-          <select name="rating">
+          <select name="rating" ng-model="review.rating">
             <option value="1">*</option>
             <option value="2">**</option>
             <option value="3">***</option>
             <option value="4">****</option>
             <option value="5">*****</option>
           </select>
-          <button class="button" ng-click="review()">Submit Rating</button>
+          <button class="button" ng-click="submitReview(session.User.username)">Submit Rating</button>
         </form>
       </li>
       <li class="time content"><span class="bold">{{displayTime(session.startTime[1])}}</span></li>
