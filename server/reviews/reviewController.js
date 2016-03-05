@@ -20,7 +20,9 @@ module.exports.addReviewToDB = function(req, res) {
 
 module.exports.getReviewsFromDB = function(req, res) {
 
-	var userId = req.body.data;
+	var userId = req.body.userId;
+	console.log('REQ: ', req)
+	console.log('Server-side req.body: ', req.body)
 
 	Review.findAll({
 		where: {

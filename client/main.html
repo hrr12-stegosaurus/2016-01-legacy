@@ -31,11 +31,13 @@
       <li class="description content">{{session.description}}</li>
       <li class="category content"><span class="bold">Category: </span>{{session.category}}</li>
       <li class="tutor content"><span class="bold">Tutor: </span>{{session.User.username}}</li>
+
       <select class="session-dates" ng-model="sessionDate">
         <option value="">Select Date</option>
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
-      <li class="tutor content">{{session.User.username}} is rated at {{getTotalRating(session.User.id)}} stars</li>
+      
+      <li class="tutor content">{{session.User.username}} is rated at {{averageRating[session.User.id]}} stars</li>
         <div id="rating">
           <form>
             <select name="rating" ng-model="review.rating">

@@ -184,14 +184,17 @@ myApp.factory('Review', function($http, $location) {
     });
   };
 
-  var getReviewsFromServer = function(userId) {
+  var getReviewsFromServer = function(userId, callback) {
+    console.log('userId in factory: ', userId);
     return $http({
-      method: 'GET',
-      url: '/reviews',
-      data: userId
+      method: 'POST',
+      url: '/reviews/getReviews',
+      data: { userId: userId }
     })
-    .then(function(reviews) {
-      return reviews;
+    .then(function(query) {
+      var reviews = query.data.reviews;
+      console.log('reviews: ', reviews);
+      callback(query);
     });
   };
 
