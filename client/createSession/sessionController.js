@@ -36,14 +36,12 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
       }
     })
   };
-
+//******************************************************************************************
   $scope.submitReview = function (userId) {
     var rating = $scope.review.rating;
-    console.log('$scope.sessions: ', $scope.sessions)
-    console.log('userId: ', userId)
     Review.sendReviewToServer({rating, userId});
   };
-  
+//****************************************************************************************  
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {

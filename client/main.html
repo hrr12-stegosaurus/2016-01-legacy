@@ -35,7 +35,7 @@
         <option value="">Select Date</option>
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
-
+      <li class="tutor content">{{session.User.username}} is rated at {{getTotalRating(session.User.id)}} stars</li>
         <div id="rating">
           <form>
             <select name="rating" ng-model="review.rating">
@@ -48,7 +48,7 @@
             <button class="button" ng-click="submitReview(session.User.id)">Rate {{session.User.username}}</button>
           </form>
         </div>
-      </li>
+
       <li class="time content"><span class="bold"><!-- {{displayTime(session.startTime[1])}} --></span></li>
     </div>
     <li class="session-full button" ng-if="session.status===true">Session Full</li>

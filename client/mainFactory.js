@@ -184,8 +184,20 @@ myApp.factory('Review', function($http, $location) {
     });
   };
 
+  var getReviewsFromServer = function(userId) {
+    return $http({
+      method: 'GET',
+      url: '/reviews',
+      data: userId
+    })
+    .then(function(reviews) {
+      return reviews;
+    });
+  };
+
   return {
-    sendReviewToServer: sendReviewToServer
+    sendReviewToServer: sendReviewToServer,
+    getReviewsFromServer: getReviewsFromServer
   };
 
 });
