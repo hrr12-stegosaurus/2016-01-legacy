@@ -1,5 +1,6 @@
 var Session = require('../../db/models').Session;
 var User = require('../../db/models').User;
+var Calendar = require('../../db/models').Calendar;
 var Mailgun = require('mailgun-js');
 var config = require('../config/config');
 var http = require('http-request');
@@ -15,8 +16,28 @@ module.exports.addSession = function(req, res){
     }
   // set the link property on req.body before passing it into Session.create
     req.body.link = ("https://appear.in" + JSON.parse(response.buffer).roomName);
+    console.log('REQ BODY')
+    console.log(req.body)
+
+    var eventTimes = req.body.startTime;
+    console.log('EVENT TIMES!!!!');
+    console.log(eventTimes);
+    delete req.body.startTime;
+
     Session.create(req.body).then(function (session) {
+      console.log('==================== SESSION ===========');
+      console.log(session);
+      var sessionID = session.dataValues.id;
+
+      for(var i = 0; i < eventTimes.length; i++){
+        eventTimes[i].SessionId = sessionID;
+        console.log ('**************************')
+        console.log(eventTimes[i].day)
+        Calendar.create(eventTimes[i]);
+      }
+
       res.send(session);
+
     })
     .catch(function (err) {
       console.error('Error creating session: ', err);
@@ -80,14 +101,14 @@ module.exports.checkAuth = function(req, res, next) {
 // sends an email to both user that created session and user that registers for session
 module.exports.registerSession = function(req, res) {
   var mailgun = new Mailgun({ apiKey: config.mailGunAPIKey, domain: config.mailGunDomain });
-  
+
   var data = {
     from: 'learnitnow@learnitnow.herokuapp.com',
     to: [req.body.tuteeEmail, req.body.tutorEmail],
     subject: 'Session Registration - ' + req.body.topic,
     html: 'Hey, this is the confirmation email for your Learn It Now! session about ' + req.body.topic + '. This is your session link: ' + req.body.link + '. Thanks for signing up!'
   };
-  
+
   mailgun.messages().send(data, function (err, body) {
     if (err) {
       res.send('Error', { error: err });

@@ -36,7 +36,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
       }
     })
   }
-  
+
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {
@@ -80,12 +80,12 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
 
   $scope.addEvent = function(){
     $scope.id = $scope.count++;
-    $scope.events.push({id:$scope.id, date: $scope.myDate, time: $scope.myTime})
+    $scope.events.push({iden:$scope.id, day: $scope.myDate, time: $scope.myTime})
   };
 
   $scope.deleteEvent = function(event){
     for(var i = 0; i < $scope.events.length; i++){
-      if($scope.events[i].id === event.id){
+      if($scope.events[i].iden === event.id){
         $scope.events.splice(i, 1);
       }
     }
@@ -95,6 +95,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
     console.log('clicked');
     session.startTime = $scope.events;
     console.log(session);
+    console.log(session.startTime)
     /*formatDate($scope.myDate, $scope.time);*/
 
     // attaches UserId to session instance that gets created
