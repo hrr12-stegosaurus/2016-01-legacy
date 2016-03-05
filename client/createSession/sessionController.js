@@ -57,6 +57,17 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
     time = time.substring(0,16).split('T').join(' at ');
     return time += ' PST';
   };
+
+  
+  $scope.isLoggedIn = function () {
+    if (Auth.getLoggedIn()){
+      $scope.$emit('loggedIn');
+    } else {
+      // redirect
+      $window.location.href = '/#/signin';
+    }
+  };
+  $scope.isLoggedIn();
 })
 
 .controller('CreateSessionController', function ($scope, Session, Auth, $window) {

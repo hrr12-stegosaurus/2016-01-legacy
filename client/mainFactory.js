@@ -104,6 +104,8 @@ myApp.factory('Auth', function ($http, $location, $window) {
       url: '/users/isLoggedIn'
     })
     .then(function(bool) {
+      loggedIn = true;
+      console.log(loggedIn)
       return bool.data;
     });
   };

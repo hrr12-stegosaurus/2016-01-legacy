@@ -39,20 +39,18 @@ module.exports = function (app, express) {
     });
   });
 
-
-  //facebook
+  //facebook login 
   app.get('/auth/facebook',
     passport.authenticate('facebook', {scope: ['email']}));
-  //facebook
+
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/signIn' }),
       function(req, res) {
-    // Successful authentication, redirect home.
-      res.redirect('/#/isLoggedIn');
-      //return done(null, user);
+      // Successful authentication, redirect home.
+      res.redirect('/#/');
   });
 
-  //facebook
+  //facebook login
   passport.use(new FacebookStrategy({
       clientID: fbAuth.facebookAuth.clientID,
       clientSecret: fbAuth.facebookAuth.clientSecret,

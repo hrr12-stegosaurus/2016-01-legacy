@@ -12,4 +12,5 @@ myApp.controller('IndexController', function($scope, $window, Auth) {
     $scope.auth.signin = true;
     $scope.auth.signout = false;
   };
+
 });
