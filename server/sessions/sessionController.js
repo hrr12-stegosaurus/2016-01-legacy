@@ -36,7 +36,7 @@ module.exports.addSession = function(req, res){
 };
 
 module.exports.getSessions = function (req, res){
-  Session.findAll({ where: req.body, include: [User]}).then(function (sessions) {
+  Session.findAll({include: [{model: User}, {model: Calendar}]}).then(function (sessions) {
     if (sessions){
       res.json(sessions);
     } else {
