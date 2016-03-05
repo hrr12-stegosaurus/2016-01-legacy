@@ -35,7 +35,7 @@
       <!-- <label>Select Date &nbsp;&nbsp;</label> -->
       <select class="session-dates" ng-model="sessionDate">
         <option value="">Select Date</option>
-        <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{date.time | date:'longDate'}}</option>
+        <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
 
 
