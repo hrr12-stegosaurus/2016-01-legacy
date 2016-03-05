@@ -4,6 +4,10 @@ module.exports = function (app){
 
 	app.post('/', reviewController.addReviewToDB);
 
-  app.post('/reviews', reviewController.addReviewToDB);
+	app.get('/', reviewController.getReviewsFromDB);
+
+  // app.post('/reviews', reviewController.addReviewToDB);
+
+  // app.get('/', reviewController.getReviewsFromDB);
 
 };

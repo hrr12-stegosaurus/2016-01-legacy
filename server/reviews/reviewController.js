@@ -17,3 +17,26 @@ module.exports.addReviewToDB = function(req, res) {
 	});
 
 };
+
+module.exports.getReviewsFromDB = function(req, res) {
+
+	var userId = req.body.data;
+
+	Review.findAll({
+		where: {
+			UserId: userId
+		}
+	})
+	.then(function(reviews) {
+		if (!reviews) {
+			console.log('No reviews found.');
+			res.end();
+		} else {
+			res.send({reviews: reviews})
+		}
+	})
+	.catch(function(err) {
+		console.error('Error getting reviews: ', err);
+	});
+
+};

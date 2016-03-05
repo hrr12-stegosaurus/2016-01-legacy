@@ -3,6 +3,8 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
  
   $scope.sessions = [];
   $scope.review = { rating: null };
+  $scope.reviews = {};
+
   $scope.getSessions = function () {
     Session.getSessions()
     .then(function (sessions) {
@@ -37,10 +39,19 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
     })
   };
 //******************************************************************************************
+// Notes: calling getTotalRating(session.User.id) in main.html is causing infinite loop in
+//        browser. I think I need to store ratings on reviews['userId'], then update the with
+//        $scope.reviews['userId'].
   $scope.submitReview = function (userId) {
     var rating = $scope.review.rating;
     Review.sendReviewToServer({rating, userId});
   };
+
+  $scope.getTotalRating = function (userId) {
+    var reviews = Review.getReviewsFromServer(userId);
+    console.log('$scope.getTotalRating reviews: ', reviews);
+  };
+
 //****************************************************************************************  
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
