@@ -31,9 +31,17 @@
       <li class="description content">{{session.description}}</li>
       <li class="category content"><span class="bold">Category: </span>{{session.category}}</li>
       <li class="tutor content"><span class="bold">Tutor: </span>{{session.User.username}}</li>
-      <div ng-repeat="date in session.Calendars">
+
+      <!-- <label>Select Date &nbsp;&nbsp;</label> -->
+      <select class="session-dates" ng-model="sessionDate">
+        <option value="">Select Date</option>
+        <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{date.time | date:'longDate'}}</option>
+      </select>
+
+
+<!--       <div ng-repeat="date in session.Calendars">
         <li class="time content"><span class="bold">{{date.day | date:'longDate'}} @ </span><span>{{date.time | date:'longDate'}}</span></li>
-      </div>
+      </div> -->
 
     </div>
     <li class="session-full button" ng-if="session.status===true">Session Full</li>
