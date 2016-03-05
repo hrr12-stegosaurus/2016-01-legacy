@@ -1,7 +1,7 @@
 
 
 myApp.controller('SessionController', function ($scope, Session, Auth) {
-  
+
   $scope.sessions = [];
   $scope.getSessions = function () {
     Session.getSessions()
@@ -54,11 +54,15 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   };
   //format time for display on session card
   $scope.displayTime = function(time) {
-    time = time.substring(0,16).split('T').join(' at ');
-    return time += ' PST';
+    var noSeconds = time.slice(0,5);
+    var hours24 = parseInt(noSeconds.substring(0,2));
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = noSeconds.substring(2);
+    return hours + minutes + amPm;
   };
 
-  
+
   $scope.isLoggedIn = function () {
     if (Auth.getLoggedIn()){
       $scope.$emit('loggedIn');
@@ -131,6 +135,6 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   };
   $scope.isLoggedIn();
 
-  
+
 });
 
