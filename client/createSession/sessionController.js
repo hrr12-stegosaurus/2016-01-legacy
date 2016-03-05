@@ -1,7 +1,7 @@
 
 
 myApp.controller('SessionController', function ($scope, Session, Auth) {
-  $
+  
   $scope.sessions = [];
   $scope.getSessions = function () {
     Session.getSessions()
@@ -131,6 +131,6 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
   };
   $scope.isLoggedIn();
 
-  $
+  
 });
 
