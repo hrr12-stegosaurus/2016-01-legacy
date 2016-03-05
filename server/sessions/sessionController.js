@@ -16,28 +16,18 @@ module.exports.addSession = function(req, res){
     }
   // set the link property on req.body before passing it into Session.create
     req.body.link = ("https://appear.in" + JSON.parse(response.buffer).roomName);
-    console.log('REQ BODY')
-    console.log(req.body)
 
     var eventTimes = req.body.startTime;
-    console.log('EVENT TIMES!!!!');
-    console.log(eventTimes);
     delete req.body.startTime;
 
     Session.create(req.body).then(function (session) {
-      console.log('==================== SESSION ===========');
-      console.log(session);
       var sessionID = session.dataValues.id;
 
       for(var i = 0; i < eventTimes.length; i++){
         eventTimes[i].SessionId = sessionID;
-        console.log ('**************************')
-        console.log(eventTimes[i].day)
         Calendar.create(eventTimes[i]);
       }
-
       res.send(session);
-
     })
     .catch(function (err) {
       console.error('Error creating session: ', err);
@@ -88,6 +78,8 @@ module.exports.deleteSession = function (req, res){
     })
     console.log('Session was deleted.');
   });
+
+  Calendar.destroy({ where: {SessionId: req.body.id}});
 };
 
 module.exports.checkAuth = function(req, res, next) {
