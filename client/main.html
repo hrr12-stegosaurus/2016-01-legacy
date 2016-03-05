@@ -36,20 +36,20 @@
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
 
-      <li class="review">
-        <a>Want to rate {{session.User.username}}?</a>
-        <form>
-          <select name="rating" ng-model="review.rating">
-            <option value="1">*</option>
-            <option value="2">**</option>
-            <option value="3">***</option>
-            <option value="4">****</option>
-            <option value="5">*****</option>
-          </select>
-          <button class="button" ng-click="submitReview(session.User.username)">Submit Rating</button>
-        </form>
+        <div id="rating">
+          <form>
+            <select name="rating" ng-model="review.rating">
+              <option value="1">*</option>
+              <option value="2">**</option>
+              <option value="3">***</option>
+              <option value="4">****</option>
+              <option value="5">*****</option>
+            </select>
+            <button class="button" ng-click="submitReview(session.User.id)">Rate {{session.User.username}}</button>
+          </form>
+        </div>
       </li>
-      <li class="time content"><span class="bold">{{displayTime(session.startTime[1])}}</span></li>
+      <li class="time content"><span class="bold"><!-- {{displayTime(session.startTime[1])}} --></span></li>
     </div>
     <li class="session-full button" ng-if="session.status===true">Session Full</li>
     <li class="registration" ng-if="session.status===false  || session.status===null"><input ng-model="email" type="text" placeholder="enter email"/><button class="button" ng-click="register(session, email)">Register</button></li>

@@ -5,11 +5,14 @@ var http = require('http-request');
 
 module.exports.addReviewToDB = function(req, res) {
 
-	Review.create({ 
-		rating: req.body.rating 
+	console.log('req.body: ', req.body)
+
+	Review.create({
+		rating: req.body.rating,
+		UserId: req.body.userId
 	})
 	.then(function(review) {
-		res.send({ rating: review.rating });
+		res.send({ rating: review.rating, userId: review.userId });
 	})
 	.catch(function(err) {
 		console.error('Error creating user: ', err.message);

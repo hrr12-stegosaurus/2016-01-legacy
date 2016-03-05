@@ -1,12 +1,6 @@
-<<<<<<< 0d230754b4f3da54b76c83a30b72b715c7d61638
 
-
-myApp.controller('SessionController', function ($scope, Session, Auth) {
-
-=======
 myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
  
->>>>>>> (feat) Create server route and controller for review submission. Store reviews in database.
   $scope.sessions = [];
   $scope.review = { rating: null };
   $scope.getSessions = function () {
@@ -43,9 +37,11 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
     })
   };
 
-  $scope.submitReview = function (user) {
+  $scope.submitReview = function (userId) {
     var rating = $scope.review.rating;
-    Review.sendReviewToServer({rating, user});
+    console.log('$scope.sessions: ', $scope.sessions)
+    console.log('userId: ', userId)
+    Review.sendReviewToServer({rating, userId});
   };
   
   //logic for filtering sessions by all vs. today
