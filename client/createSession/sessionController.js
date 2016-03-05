@@ -80,12 +80,12 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
 
   $scope.addEvent = function(){
     $scope.id = $scope.count++;
-    $scope.events.push({id:$scope.id, day: $scope.myDate, time: $scope.myTime})
+    $scope.events.push({iden:$scope.id, day: $scope.myDate, time: $scope.myTime})
   };
 
   $scope.deleteEvent = function(event){
     for(var i = 0; i < $scope.events.length; i++){
-      if($scope.events[i].id === event.id){
+      if($scope.events[i].iden === event.id){
         $scope.events.splice(i, 1);
       }
     }
