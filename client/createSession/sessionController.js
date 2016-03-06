@@ -192,6 +192,9 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
     }
     console.log('.$ngfDataUrl'+$scope.file.$ngfDataUrl)
     $scope.session.image = $scope.file.$ngfDataUrl;
+    Session.upload($scope.file).then(function(x){
+      //console.log("x")
+    })
   };
   
   // upload on file select or drop 
