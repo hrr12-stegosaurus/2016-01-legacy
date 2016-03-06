@@ -103,13 +103,11 @@ module.exports = function (app, express) {
 
   app.post("/checkout", function (req, res) {
     var nonce = req.body.payment_method_nonce;
-    console.log('=====NONCE======')
-    console.log(nonce)
     // Use payment method nonce here
     //
     gateway.transaction.sale({
       amount: '10.00',
-      paymentMethodNonce: 'fake-valid-nonce',
+      paymentMethodNonce: nonce,
       options: {
         submitForSettlement: true
       }
@@ -117,8 +115,7 @@ module.exports = function (app, express) {
       if(err){
         console.log(err)
       } else {
-        console.log(result);
-        res.send(result);
+        res.redirect('/#/');
       }
     });
   });
