@@ -72,7 +72,7 @@ myApp.factory('Session', function($http, $location) {
     deleteSession: deleteSession,
     getSessions: getSessions,
     updateStatus: updateStatus,
-    register: register,
+    register: register
   };
 });
 
