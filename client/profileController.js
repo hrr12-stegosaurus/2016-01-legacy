@@ -17,5 +17,12 @@ myApp.controller('ProfileController', function ($scope, Session, Auth) {
       })
     })
   }
+
+  $scope.delete = function (session) {
+    Session.deleteSession(session, function(data) {
+      $scope.getUser();
+    });
+  }
+
   $scope.getUser();
 })
