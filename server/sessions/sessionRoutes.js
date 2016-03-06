@@ -5,6 +5,8 @@ module.exports = function (app){
   app.get('/', sessionController.getSessions);
   
   app.post('/', sessionController.checkAuth, sessionController.addSession);
+
+  app.post('/user', sessionController.getUserSessions);
   
   app.post('/send', sessionController.registerSession);
   

@@ -35,7 +35,17 @@ myApp.factory('Session', function($http, $location) {
     });
   };
 
-  // must send an object with 'id' and 'status' property
+  var getUserSessions = function(userId, callback) {
+    return $http({
+      method: 'POST',
+      url: '/sessions/user',
+      data: { userId: userId }
+    })
+    .then(function(sessions) {
+      callback(sessions.data);
+    });
+  };
+
   var updateStatus = function(updateInfo){
     console.log('clicked inside factory', updateInfo);
     return $http({
@@ -57,6 +67,7 @@ myApp.factory('Session', function($http, $location) {
   };
 
   return {
+    getUserSessions: getUserSessions,
     createSession: createSession,
     deleteSession: deleteSession,
     getSessions: getSessions,
@@ -137,7 +148,19 @@ myApp.factory('Auth', function ($http, $location, $window) {
     });
   };
 
+  var getUser = function (userId, callback) {
+    return $http({
+      method: 'POST',
+      url: '/users/getUser',
+      data: {userId: userId}
+    })
+    .then(function(user) {
+      callback(user);
+    });
+  }
+
   return {
+    getUser: getUser,
     getSignedInUser : getSignedInUser,
     signin: signin,
     signup: signup,

@@ -15,4 +15,6 @@ module.exports = function (app){
 
 	app.post('/signOut', userController.signOut);
 
+	app.post('/getUser', userController.getUser);
+
 };
