@@ -9,7 +9,8 @@
     <h1 class="subhead">Your Lessons</h1>
     <div class="sessionContainer">
       <ul class="session" ng-class="session-{{session.category}}" ng-repeat="session in sessions | filter:filterBox | filter:sessionFilter | filter:filterOptions | orderBy:'startTime'">
-        <img class="photo" src="images/{{session.category}}.jpg">
+        <img ng-show="session.image!=NULL" class="photo" src="{{session.image}}" width="350px" height="200px">
+        <img ng-show="session.image==NULL" class="photo" src="images/{{session.category}}.jpg">
         <div class="sessionDetails">
           <li class="topic content">{{session.topic}}</li>
           <li class="description content">{{session.description}}</li>
