@@ -29,8 +29,6 @@ myApp.factory('Session', function($http, $location) {
       url: '/sessions'
     })
     .then(function(sessions) {
-      console.log('=====SESSIONS=====')
-      console.log(sessions);
       return sessions.data;
     });
   };
