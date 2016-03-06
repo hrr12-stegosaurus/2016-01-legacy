@@ -1,4 +1,5 @@
 var User = require('../../db/models').User;
+var Session = require('../../db/models').Session;
 
 module.exports.newUser = function (req, res){
 
@@ -64,4 +65,15 @@ module.exports.isLoggedIn = function (req, res){
 // used to retrieve signed-in user's userId to attach to session that the user creates
 module.exports.getSignedInUser = function(req, res){
   res.send({ UserId: req.user.id });
+};
+
+module.exports.getUser = function(req, res) {
+  User.findOne({ id: req.body.userId })
+    .then(function (user) {
+      res.send(user)
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.end();
+    });
 };

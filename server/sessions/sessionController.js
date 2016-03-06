@@ -50,6 +50,21 @@ module.exports.getSessions = function (req, res){
   });
 };
 
+module.exports.getUserSessions = function (req, res){
+  Session.findAll({ id: req.body.userId, include: [Calendar] }).then(function (sessions) {
+    if (sessions){
+      res.json(sessions);
+    } else {
+      console.log('No sessions found');
+      res.end();
+    }
+  })
+  .catch(function (err) {
+    console.error('Error getting sessions: ', err);
+    res.end();
+  });
+};
+
 module.exports.updateStatus = function (req, res){
   var status = req.body.status;
   var id = parseInt(req.body.id);
