@@ -11,7 +11,7 @@ myApp.controller('ProfileController', function ($scope, Session, Auth) {
         $scope.age = user.data.createdAt;
         $scope.username = user.data.username;
         $scope.email = user.data.email;
-        Session.getUserSessions(user.data.id, function(sessions) {
+        Session.getUserSessions(user.config.data.userId, function(sessions) {
           $scope.sessions = sessions;
         })
       })
