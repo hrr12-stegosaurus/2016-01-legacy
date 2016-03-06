@@ -19,9 +19,14 @@ myApp.config(function ($routeProvider) {
       templateUrl: 'createSession/createSession.html',
       controller: 'CreateSessionController'
     })
+
     .when('/profile', {
       templateUrl: 'profile.html',
       controller: 'ProfileController'
+    })
+    .when('/payment', {
+      templateUrl: 'payments/payments.html',
+      controller: 'PaymentsController'
     })
     .otherwise({
       redirectTo: '/'
