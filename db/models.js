@@ -46,7 +46,8 @@ var Session = orm.define('Session', {
   /*startTime: Sequelize.DATE,*/
   link: Sequelize.TEXT,
   status: Sequelize.BOOLEAN,
-  category: Sequelize.STRING
+  category: Sequelize.STRING,
+  image: Sequelize.TEXT
 });
 
 var Calendar = orm.define('Calendar', {

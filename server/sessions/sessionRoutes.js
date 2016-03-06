@@ -13,4 +13,5 @@ module.exports = function (app){
   app.put('/', sessionController.updateStatus);
   
   app.delete('/', sessionController.deleteSession);
+
 };

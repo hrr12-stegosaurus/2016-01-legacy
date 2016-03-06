@@ -1,5 +1,5 @@
 
-myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
+myApp.controller('SessionController', function ($scope, Session, Auth, Review, $window) {
  
   $scope.sessions = [];
 
@@ -127,7 +127,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
   $scope.isLoggedIn();
 })
 
-.controller('CreateSessionController', function ($scope, Session, Auth, $window) {
+.controller('CreateSessionController', function ($scope, Upload, Session, Auth, $window) {
   $scope.session = {};
   // event is an array of session time objects w 3 properties: id, date, and time
   $scope.events = [];
@@ -162,9 +162,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
   $scope.createSession = function (session) {
     console.log('clicked');
     session.startTime = $scope.events;
-    console.log(session);
-    console.log(session.startTime)
-    /*formatDate($scope.myDate, $scope.time);*/
+    //console.log(session, '*************')
 
     // attaches UserId to session instance that gets created
     Auth.getSignedInUser().then(function (user){
@@ -188,6 +186,30 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
   };
   $scope.isLoggedIn();
 
+  $scope.submit = function() {
+    if ($scope.form.file.$valid && $scope.file) {
+      $scope.upload($scope.file);
+    }
+    console.log('.$ngfDataUrl'+$scope.file.$ngfDataUrl)
+    $scope.session.image = $scope.file.$ngfDataUrl;
+    
+  };
+  
+  // upload on file select or drop 
+  $scope.upload = function (file) {
+    console.log(file);
+      Upload.upload({
+          url: 'upload/url',
+          data: {file: file, 'username': $scope.username}
+      }).then(function (resp) {
+          console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+      }, function (resp) {
+          console.log('Error status: ' + resp.status);
+      }, function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
+  };
 
 });
 
