@@ -1,5 +1,5 @@
 
-myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
+myApp.controller('SessionController', function ($scope, Session, Auth, Review, $window) {
  
   $scope.sessions = [];
 
