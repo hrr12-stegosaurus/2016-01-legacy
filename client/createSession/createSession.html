@@ -93,5 +93,14 @@
     <hr>
     <br>
     <button class="submit">Create Session</button>
+    <img ngf-thumbnail="file || '/thumb.jpg'" width="150px" height="100%">
   </form>
+
+  <form ng-app="fileUpload" name="form">
+    Single Image with validations
+    <button ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+      ngf-accept="'image/*'" ngf-min-height="100">Select</button>
+    <button type="submit" ng-click="submit()">submit</button>
+  </form>
+
 </div>

@@ -1,5 +1,5 @@
 //ngMaterial included for datepicker
-var myApp = angular.module("myApp", ['ngRoute', 'ngMaterial']);
+var myApp = angular.module("myApp", ['ngRoute', 'ngMaterial', 'ngFileUpload']);
 
 myApp.config(function ($routeProvider) {
   $routeProvider

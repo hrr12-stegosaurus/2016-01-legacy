@@ -23,6 +23,7 @@ CREATE TABLE sessions (
   startTime DATETIME NOT NULL,
   link TEXT NOT NULL,
   status BOOLEAN NOT NULL,
+  image TEXT,
   FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
