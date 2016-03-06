@@ -25,9 +25,9 @@ module.exports.getReviewsFromDB = function(req, res) {
 	console.log('Server-side req.body: ', req.body)
 
 	Review.findAll({
-		where: {
-			UserId: userId
-		}
+		// where: {
+		// 	UserId: userId
+		// }
 	})
 	.then(function(reviews) {
 		if (!reviews) {

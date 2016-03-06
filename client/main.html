@@ -37,7 +37,9 @@
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
       
-      <li class="tutor content">{{session.User.username}} is rated at {{averageRating[session.User.id]}} stars</li>
+      <li class="tutor content" ng-show="averageRating[session.User.id]">{{session.User.username}} is rated at {{averageRating[session.User.id]}} stars</li>
+      <li class="tutor content" ng-hide="averageRating[session.User.id]">{{session.User.username}} has not been reviewed yet</li>
+
         <div id="rating">
           <form>
             <select name="rating" ng-model="review.rating">

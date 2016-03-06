@@ -185,7 +185,6 @@ myApp.factory('Review', function($http, $location) {
   };
 
   var getReviewsFromServer = function(userId, callback) {
-    console.log('userId in factory: ', userId);
     return $http({
       method: 'POST',
       url: '/reviews/getReviews',
@@ -193,7 +192,6 @@ myApp.factory('Review', function($http, $location) {
     })
     .then(function(query) {
       var reviews = query.data.reviews;
-      console.log('reviews: ', reviews);
       callback(query);
     });
   };

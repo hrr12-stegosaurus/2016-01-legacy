@@ -37,9 +37,6 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
     })
   };
 //******************************************************************************************
-// Notes: calling getTotalRating(session.User.id) in main.html is causing infinite loop in
-//        browser. I think I need to store ratings on reviews['userId'], then update the with
-//        $scope.reviews['userId'].
 
   $scope.review = { rating: null };
   $scope.allReviews = { /*[userId]: [all ratings]*/ };
@@ -52,27 +49,62 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
     $scope.getTotalRating(userId);
   };
 
-  $scope.getTotalRating = function (userId) {
-    // $scope.allReviews[userId] = 
-    Review.getReviewsFromServer(userId, function(reviews) {
-      console.log('reviews: ', reviews)
-      $scope.allReviews[userId] = reviews.data.reviews;
-      console.log('$scope.allReviews[userId]: ', $scope.allReviews[userId]);
-      var total = 0;
-      var length = $scope.allReviews[userId].length;
-      var averageRating;
-      $scope.allReviews[userId].forEach(function(review) {
-        var rating = review.rating;
-        total += rating;
-      });
-      averageRating = Math.floor(total / length);
-      $scope.averageRating[userId] = averageRating;
-    });
+  // $scope.getTotalRating = function (userId) {
+  //   Review.getReviewsFromServer(userId, function(reviews) {
+  //     console.log('reviews: ', reviews)
+  //     $scope.allReviews[userId] = reviews.data.reviews;
+  //     console.log('$scope.allReviews[userId]: ', $scope.allReviews[userId]);
+  //     var total = 0;
+  //     var length = $scope.allReviews[userId].length;
+  //     var averageRating;
+  //     $scope.allReviews[userId].forEach(function(review) {
+  //       var rating = review.rating;
+  //       total += rating;
+  //     });
+  //     averageRating = Math.floor(total / length);
+  //     $scope.averageRating[userId] = averageRating;
+  //   });
+  // };
 
+  $scope.getTotalRating = function (userId) {
+    Review.getReviewsFromServer(userId, function(reviews) {
+
+      var reviews = reviews.data.reviews;
+
+      for (var i = 0; i < reviews.length; i++) {
+        var review = reviews[i];
+        console.log('review: ', review)
+        var userId = review.UserId;
+        if ($scope.allReviews[userId] === undefined) {
+          $scope.allReviews[userId] = [];
+        }
+        $scope.allReviews[userId].push(review.rating);
+      }
+
+      for (var key in $scope.allReviews) {
+        console.log('$scope.allReviews[key]', $scope.allReviews[key])
+        var userRatings = $scope.allReviews[key];
+        var total = 0;
+        var average;
+        for (var i = 0; i < userRatings.length; i++) {
+          var rating = userRatings[i];
+          total += rating;
+        }
+        average = Math.floor(total / userRatings.length);
+        console.log('average: ', average);
+        $scope.averageRating[key] = average;
+      }
+
+      // reviews.forEach(function(review) {
+      //   console.log('review: ', review);
+      //   var userId = review.userId;
+      //   $scope.allReviews[userId].push(review.rating);
+      // });
+      console.log('$scope.allReviews: ', $scope.allReviews);
+    });
   };
 
-  // $scope.getTotalRating();
-  
+  $scope.getTotalRating();
 
 //****************************************************************************************  
   //logic for filtering sessions by all vs. today
