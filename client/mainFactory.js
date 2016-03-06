@@ -1,3 +1,21 @@
+myApp.factory('Payment', function($http, $location){
+
+  var getClientToken = function(){
+    return $http({
+      method: 'GET',
+      url: '/client_token',
+    })
+    .then(function(token){
+      return token.data;
+    });
+  };
+
+  return {
+    getClientToken: getClientToken
+  };
+
+});
+
 
 myApp.factory('Session', function($http, $location) {
   var createSession = function(session) {

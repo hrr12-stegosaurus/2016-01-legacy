@@ -25,8 +25,8 @@ myApp.config(function ($routeProvider) {
       controller: 'ProfileController'
     })
     .when('/payment', {
-      templateUrl: 'payments.html',
-      controller: 'SigninController'
+      templateUrl: 'payments/payments.html',
+      controller: 'PaymentsController'
     })
     .otherwise({
       redirectTo: '/'
