@@ -170,3 +170,35 @@ myApp.factory('Auth', function ($http, $location, $window) {
     setLoggedIn: setLoggedIn
   };
 });
+
+myApp.factory('Review', function($http, $location) {
+
+  var sendReviewToServer = function(review) {
+    return $http({
+      method: 'POST',
+      url: '/reviews',
+      data: review
+    })
+    .then(function(review) {
+      return review;
+    });
+  };
+
+  var getReviewsFromServer = function(userId, callback) {
+    return $http({
+      method: 'POST',
+      url: '/reviews/getReviews',
+      data: { userId: userId }
+    })
+    .then(function(query) {
+      var reviews = query.data.reviews;
+      callback(query);
+    });
+  };
+
+  return {
+    sendReviewToServer: sendReviewToServer,
+    getReviewsFromServer: getReviewsFromServer
+  };
+
+});

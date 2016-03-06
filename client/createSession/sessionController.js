@@ -1,8 +1,8 @@
 
-
-myApp.controller('SessionController', function ($scope, Session, Auth) {
-
+myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
+ 
   $scope.sessions = [];
+
   $scope.getSessions = function () {
     Session.getSessions()
     .then(function (sessions) {
@@ -35,8 +35,61 @@ myApp.controller('SessionController', function ($scope, Session, Auth) {
         });
       }
     })
-  }
+  };
 
+//*** Start Reviews section. ***//
+
+  $scope.review = { rating: null };
+  $scope.allRatings = {};
+  $scope.averageRating = {};
+
+  // Send reviews to server/db. Object with rating and userId properties.
+  $scope.submitReview = function (userId) {
+    var rating = $scope.review.rating;
+    Review.sendReviewToServer({rating, userId});
+    $scope.getAllReviews();
+  };
+
+  // Get all reviews from server/db.
+  $scope.getAllReviews = function (userId) {
+    Review.getReviewsFromServer(userId, function(reviews) {
+
+      var reviews = reviews.data.reviews;
+
+      // Store an all of user's ratings in an array on the $allRatings object.
+      // The user's userId is the key.
+      for (var i = 0; i < reviews.length; i++) {
+        var review = reviews[i];
+        var userId = review.UserId;
+        if ($scope.allRatings[userId] === undefined) {
+          $scope.allRatings[userId] = [];
+        }
+        $scope.allRatings[userId].push(review.rating);
+      }
+
+      // Calculate the average of all the user's ratings. STore on $scope.averageRating.
+      // The user's userId is the key.
+      for (var key in $scope.allRatings) {
+        console.log('$scope.allRatings[key]', $scope.allRatings[key])
+        var userRatings = $scope.allRatings[key];
+        var total = 0;
+        var average;
+        for (var i = 0; i < userRatings.length; i++) {
+          var rating = userRatings[i];
+          total += rating;
+        }
+        average = Math.floor(total / userRatings.length);
+        console.log('average: ', average);
+        $scope.averageRating[key] = average;
+      }
+    });
+  };
+
+  // Get all ratings on page load.
+  $scope.getAllReviews();
+
+//*** End reviews section. ***//
+ 
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {

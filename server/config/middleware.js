@@ -12,6 +12,7 @@ module.exports = function (app, express) {
 
   var userRouter = express.Router();
   var sessionRouter = express.Router();
+  var reviewRouter = express.Router();
 
   app.use(bodyParser.urlencoded({ extend: true }));
   app.use(bodyParser.json());
@@ -83,12 +84,12 @@ module.exports = function (app, express) {
       })
     }
   ));
-  
-
 
   app.use('/users', userRouter);
   app.use('/sessions', sessionRouter);
+  app.use('/reviews', reviewRouter);
 
   require('../users/userRoutes.js')(userRouter);
   require('../sessions/sessionRoutes.js')(sessionRouter);
+  require('../reviews/reviewRoutes.js')(reviewRouter);
 };

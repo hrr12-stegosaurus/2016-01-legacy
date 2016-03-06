@@ -36,6 +36,10 @@ User.beforeCreate(function(user, options) {
   user.password = user.hashPassword();
 });
 
+var Review = orm.define('Review', {
+  rating: Sequelize.INTEGER
+});
+
 var Session = orm.define('Session', {
   topic: Sequelize.STRING,
   description: Sequelize.STRING,
@@ -52,6 +56,8 @@ var Calendar = orm.define('Calendar', {
 
 User.hasMany(Session);
 Session.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 Session.hasMany(Calendar);
 Calendar.belongsTo(Session);
@@ -59,10 +65,12 @@ Calendar.belongsTo(Session);
 User.sync();
 Session.sync();
 Calendar.sync();
+Review.sync();
 
 exports.User = User;
 exports.Session = Session;
 exports.Calendar = Calendar;
+exports.Review = Review;
 
 
 
