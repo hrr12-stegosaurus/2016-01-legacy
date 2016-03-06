@@ -21,7 +21,6 @@ module.exports.addSession = function(req, res){
     delete req.body.startTime;
 
     Session.create(req.body).then(function (session) {
-      console.log('*****************', session);
       var sessionID = session.dataValues.id;
 
       for(var i = 0; i < eventTimes.length; i++){

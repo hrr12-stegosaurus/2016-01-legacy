@@ -73,7 +73,7 @@ myApp.factory('Session', function($http, $location) {
     getSessions: getSessions,
     updateStatus: updateStatus,
     register: register,
-    upload: upload
+    upload: upload,
   };
 });
 
