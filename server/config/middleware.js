@@ -13,11 +13,9 @@ module.exports = function (app, express) {
 
   var userRouter = express.Router();
   var sessionRouter = express.Router();
-<<<<<<< cab7bca61a320338830c678ce3a746917629e4c5
+
   var reviewRouter = express.Router();
-=======
-  /*var paymentsRouter = express.Router();*/
->>>>>>> Implement Braintree nonce, successfully posts results
+
 
   app.use(bodyParser.urlencoded({ extend: true }));
   app.use(bodyParser.json());
@@ -99,6 +97,7 @@ module.exports = function (app, express) {
   require('../reviews/reviewRoutes.js')(reviewRouter);
 };
 
+
   // Braintree
 
   var gateway = braintree.connect({
@@ -116,8 +115,7 @@ module.exports = function (app, express) {
 
   app.post("/checkout", function (req, res) {
     var nonce = req.body.payment_method_nonce;
-    // Use payment method nonce here
-    //
+
     gateway.transaction.sale({
       amount: '10.00',
       paymentMethodNonce: nonce,
@@ -136,9 +134,7 @@ module.exports = function (app, express) {
 
   app.use('/users', userRouter);
   app.use('/sessions', sessionRouter);
-  /*app.use('/payments', paymentsRouter);*/
 
   require('../users/userRoutes.js')(userRouter);
   require('../sessions/sessionRoutes.js')(sessionRouter);
-  /*require('../payments/paymentsRoutes.js')(paymentsRouter);*/
 };
