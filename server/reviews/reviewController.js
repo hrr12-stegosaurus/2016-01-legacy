@@ -15,20 +15,13 @@ module.exports.addReviewToDB = function(req, res) {
 		console.error('Error creating user: ', err.message);
 		res.end();
 	});
-
+	
 };
 
 module.exports.getReviewsFromDB = function(req, res) {
+	// var userId = req.body.userId;
 
-	var userId = req.body.userId;
-	console.log('REQ: ', req)
-	console.log('Server-side req.body: ', req.body)
-
-	Review.findAll({
-		// where: {
-		// 	UserId: userId
-		// }
-	})
+	Review.findAll({})
 	.then(function(reviews) {
 		if (!reviews) {
 			console.log('No reviews found.');

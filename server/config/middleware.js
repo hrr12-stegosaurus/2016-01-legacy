@@ -85,8 +85,6 @@ module.exports = function (app, express) {
     }
   ));
 
-
-
   app.use('/users', userRouter);
   app.use('/sessions', sessionRouter);
   app.use('/reviews', reviewRouter);

@@ -36,54 +36,42 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
       }
     })
   };
-//******************************************************************************************
+
+//*** Start Reviews section. ***//
 
   $scope.review = { rating: null };
-  $scope.allReviews = { /*[userId]: [all ratings]*/ };
+  $scope.allRatings = {};
   $scope.averageRating = {};
 
+  // Send reviews to server/db. Object with rating and userId properties.
   $scope.submitReview = function (userId) {
     var rating = $scope.review.rating;
     Review.sendReviewToServer({rating, userId});
-    // console.log(Review.getReviewsFromServer(1));
-    $scope.getTotalRating(userId);
+    $scope.getAllReviews();
   };
 
-  // $scope.getTotalRating = function (userId) {
-  //   Review.getReviewsFromServer(userId, function(reviews) {
-  //     console.log('reviews: ', reviews)
-  //     $scope.allReviews[userId] = reviews.data.reviews;
-  //     console.log('$scope.allReviews[userId]: ', $scope.allReviews[userId]);
-  //     var total = 0;
-  //     var length = $scope.allReviews[userId].length;
-  //     var averageRating;
-  //     $scope.allReviews[userId].forEach(function(review) {
-  //       var rating = review.rating;
-  //       total += rating;
-  //     });
-  //     averageRating = Math.floor(total / length);
-  //     $scope.averageRating[userId] = averageRating;
-  //   });
-  // };
-
-  $scope.getTotalRating = function (userId) {
+  // Get all reviews from server/db.
+  $scope.getAllReviews = function (userId) {
     Review.getReviewsFromServer(userId, function(reviews) {
 
       var reviews = reviews.data.reviews;
 
+      // Store an all of user's ratings in an array on the $allRatings object.
+      // The user's userId is the key.
       for (var i = 0; i < reviews.length; i++) {
         var review = reviews[i];
-        console.log('review: ', review)
         var userId = review.UserId;
-        if ($scope.allReviews[userId] === undefined) {
-          $scope.allReviews[userId] = [];
+        if ($scope.allRatings[userId] === undefined) {
+          $scope.allRatings[userId] = [];
         }
-        $scope.allReviews[userId].push(review.rating);
+        $scope.allRatings[userId].push(review.rating);
       }
 
-      for (var key in $scope.allReviews) {
-        console.log('$scope.allReviews[key]', $scope.allReviews[key])
-        var userRatings = $scope.allReviews[key];
+      // Calculate the average of all the user's ratings. STore on $scope.averageRating.
+      // The user's userId is the key.
+      for (var key in $scope.allRatings) {
+        console.log('$scope.allRatings[key]', $scope.allRatings[key])
+        var userRatings = $scope.allRatings[key];
         var total = 0;
         var average;
         for (var i = 0; i < userRatings.length; i++) {
@@ -94,19 +82,14 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review) {
         console.log('average: ', average);
         $scope.averageRating[key] = average;
       }
-
-      // reviews.forEach(function(review) {
-      //   console.log('review: ', review);
-      //   var userId = review.userId;
-      //   $scope.allReviews[userId].push(review.rating);
-      // });
-      console.log('$scope.allReviews: ', $scope.allReviews);
     });
   };
 
-  $scope.getTotalRating();
+  // Get all ratings on page load.
+  $scope.getAllReviews();
 
-//****************************************************************************************  
+//*** End reviews section. ***//
+ 
   //logic for filtering sessions by all vs. today
   $scope.filterType = 'all';
   $scope.sessionFilter = function (session) {

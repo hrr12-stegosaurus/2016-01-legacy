@@ -53,7 +53,7 @@
           </form>
         </div>
 
-      <li class="time content"><span class="bold"><!-- {{displayTime(session.startTime[1])}} --></span></li>
+      <li class="time content"><span class="bold"></span></li>
     </div>
     <li class="session-full button" ng-if="session.status===true">Session Full</li>
     <li class="registration" ng-if="session.status===false  || session.status===null"><input ng-model="email" type="text" placeholder="enter email"/><button class="button" ng-click="register(session, email)">Register</button></li>
