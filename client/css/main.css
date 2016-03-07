@@ -284,6 +284,11 @@ input.keywordFilter {
   color: #fff;
   border-radius: 5px;
 }
+
+.pay-btn {
+  border-radius: 0px;
+  padding: 2px;
+}
 .registration {
   position: absolute;
   bottom: 21px;
