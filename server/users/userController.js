@@ -3,10 +3,10 @@ var Session = require('../../db/models').Session;
 
 module.exports.newUser = function (req, res){
 
-  User.create({ 
-    username: req.body.username, 
-    password: req.body.password, 
-    email: req.body.email 
+  User.create({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
   })
   .then(function (user) {
     res.send({username: user.username, email: user.email});
@@ -48,7 +48,7 @@ module.exports.signIn = function (req, res){
   res.json({ id: req.user.id, username: req.user.username, email: req.user.email });
 };
 
-// destroys user logged-in session in server 
+// destroys user logged-in session in server
 module.exports.signOut = function (req, res){
   req.logout();
   res.send('Logged out.');
@@ -68,7 +68,7 @@ module.exports.getSignedInUser = function(req, res){
 };
 
 module.exports.getUser = function(req, res) {
-  User.findOne({ id: req.body.userId })
+  User.findAll({ where: {id: req.body.userId }})
     .then(function (user) {
       res.send(user)
     })
