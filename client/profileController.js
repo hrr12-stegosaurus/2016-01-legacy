@@ -24,6 +24,7 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar)
         })
         Session.getRegistered(user.config.data.userId, function(registered) {
           $scope.registered = registered;
+          console.log(registered, '*********')
         })
       })
     })
