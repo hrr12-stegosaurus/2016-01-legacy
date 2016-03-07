@@ -19,11 +19,12 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
     // profile email
     // calendar/date
     // description
-    Auth.getSignedInUser().then(function (user) {
-      Auth.getUser(user.data.UserId, function(user) {
-        console.log(user.data.UserId);
+    console.log(day);
+    console.log(time);
+    Auth.getSignedInUser().then(function (signed) {
+      Auth.getUser(signed.data.UserId, function(user) {
         var registerInfo = {
-          UserId: user.data.UserId,
+          UserId: signed.data.UserId,
           tutorEmail: session.User.email,
           tuteeEmail: user.data.email,
           topic: session.topic,
