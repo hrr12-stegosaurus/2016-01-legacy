@@ -1,4 +1,5 @@
 var Session = require('../../db/models').Session;
+var Registered = require('../../db/models').Registered;
 var User = require('../../db/models').User;
 var Calendar = require('../../db/models').Calendar;
 var Mailgun = require('mailgun-js');
@@ -109,7 +110,9 @@ module.exports.checkAuth = function(req, res, next) {
 module.exports.registerSession = function(req, res) {
   var mailgun = new Mailgun({ apiKey: config.mailGunAPIKey, domain: config.mailGunDomain });
 
-  console.log("HEY LOOK HERE BITCH ==========>", req.body.tuteeEmail);
+  Registered.create(req.body).then(function(registered) {
+    console.log('Registered.');
+  })
 
   var data = {
     from: 'learnitnow@learnitnow.herokuapp.com',
@@ -122,7 +125,7 @@ module.exports.registerSession = function(req, res) {
     if (err) {
       res.send('Error', { error: err });
     } else {
-      res.send('Email sent.');
+      console.log('Email sent.');
     }
   });
 };

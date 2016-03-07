@@ -50,6 +50,8 @@ var Session = orm.define('Session', {
 });
 
 var Registered = orm.define('Registered', {
+  tutorEmail: Sequelize.STRING,
+  tuteeEmail: Sequelize.STRING,
   topic: Sequelize.STRING,
   description: Sequelize.STRING,
   date: Sequelize.STRING,
@@ -80,7 +82,9 @@ User.sync();
 Session.sync();
 Calendar.sync();
 Review.sync();
+Registered.sync();
 
+exports.Registered = Registered;
 exports.User = User;
 exports.Session = Session;
 exports.Calendar = Calendar;

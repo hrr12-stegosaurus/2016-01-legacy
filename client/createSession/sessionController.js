@@ -13,7 +13,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   $scope.getSessions();
   $scope.isClicked = false;
 
-  $scope.register = function (session, tuteeEmail){
+  $scope.register = function (session, day, time){
 
     // send an email to user and register them
     // profile email
@@ -21,7 +21,18 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
     // description
     Auth.getSignedInUser().then(function (user) {
       Auth.getUser(user.data.UserId, function(user) {
-        var registerInfo = {tuteeEmail: user.data.email, link: session.link, topic: session.topic, tutorEmail: session.User.email};
+        console.log(user.data.UserId);
+        var registerInfo = {
+          UserId: user.data.UserId,
+          tutorEmail: session.User.email,
+          tuteeEmail: user.data.email,
+          topic: session.topic,
+          description: session.description,
+          link: session.link,
+          category: session.category,
+          date: day + " @ " + time,
+          image: session.image
+        };
         Session.register(registerInfo);
       })
     })
