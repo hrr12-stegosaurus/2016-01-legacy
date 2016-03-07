@@ -20,8 +20,8 @@
 ## Usage
 http://learnitnow.herokuapp.com/
 
-If you have knowledge to share, sign in and post.
-If you want to learn, just sign up with your email.
+If you have knowledge to share, create a lesson.
+If you want to register for a lesson, pick an available appointment and pay the lesson fee.
 
 ## Requirements
 
