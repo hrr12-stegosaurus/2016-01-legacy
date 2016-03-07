@@ -12,8 +12,8 @@
       <input type='text' ng-model='user.email' pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
       <br>
       <br>
-      <label>Password </label><br>
-      <input type="password" ng-model='user.password' required><br>
+      <label>Password (1 upper, 1 lower and 1 number) </label><br>
+      <input type="password" ng-model='user.password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required><br>
       <br>
       <button class="submit">Sign Up</button>
     </form>
