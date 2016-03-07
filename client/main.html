@@ -37,7 +37,9 @@
         <option value="">Select Date</option>
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
-      
+
+      <a class="button pay-btn" href="#/payment">Register</a>
+
       <li class="tutor content" ng-show="averageRating[session.User.id]">{{session.User.username}} is rated at {{averageRating[session.User.id]}} stars</li>
       <li class="tutor content" ng-hide="averageRating[session.User.id]">{{session.User.username}} has not been reviewed yet</li>
 
