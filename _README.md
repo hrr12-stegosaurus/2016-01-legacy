@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: Kelly von Borstel
-  - __Scrum Master__: Devonte MacGlashan
-  - __Development Team Members__: Maz Atighi, Pierre Teo, Pedro Torres-Picon
+  - __Product Owner__: Tom Coughlin	
+  - __Scrum Master__: Ted Hsiao
+  - __Development Team Members__: Calvin Le, Sonny Sheth
   
 ## Table of Contents
 
@@ -64,7 +64,7 @@ https://developer.appear.in/
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/hrr12-velociraptors/velociraptors/issues)
+View the project roadmap [here](https://github.com/hrr12-stegosaurus/2016-01-greenfield/issues)
 
 
 ## Contributing
