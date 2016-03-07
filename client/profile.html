@@ -4,7 +4,7 @@
     <h1 class="subhead">Profile</h1>
     <div>Name: {{username}}</div>
     <div>Email: {{email}}</div>
-    <div>Member Since: {{age}}</div>
+    <div>Member Since: {{age | date:'longDate' }}</div>
     <br>
     <h1 class="subhead">Your Lessons</h1>
     <div class="sessionContainer">

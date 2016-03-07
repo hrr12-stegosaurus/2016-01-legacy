@@ -1,16 +1,23 @@
-myApp.controller('ProfileController', function ($scope, Session, Auth) {
+myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar) {
   $scope.sessions;
   $scope.username;
   $scope.email;
   $scope.age;
   $scope.userId;
 
+  $scope.displayTime = function(time){
+    return Calendar.displayTime(time);
+  }
+
   $scope.getUser = function() {
     Auth.getSignedInUser().then(function (user) {
+      console.log('DATA: ', user.data.UserId)
       Auth.getUser(user.data.UserId, function(user) {
-        $scope.age = user.data.createdAt;
-        $scope.username = user.data.username;
-        $scope.email = user.data.email;
+        console.log('/////////')
+        console.log(user)
+        $scope.age = user.data[0].createdAt;
+        $scope.username = user.data[0].username;
+        $scope.email = user.data[0].email;
         Session.getUserSessions(user.config.data.userId, function(sessions) {
           $scope.sessions = sessions;
         })
@@ -23,6 +30,8 @@ myApp.controller('ProfileController', function ($scope, Session, Auth) {
       $scope.getUser();
     });
   }
+
+
 
   $scope.getUser();
 })
