@@ -26,8 +26,8 @@
       <h1 class="head"><a href="/#/">Learn it Now!</a></h1>
       <a href="#/signin" class="nav" ng-show="auth.signin">Sign In</a>
       <a href="#/siginout" class="nav" ng-show="auth.signout" ng-click="signout()">Sign Out</a>
-      <a href="#/create" class="nav">Create Session</a>
-      <a href="#/profile" class="nav">Profile</a>
+      <a href="#/create" ng-show="auth.signout" class="nav">Create Session</a>
+      <a href="#/profile" ng-show="auth.signout" class="nav">Profile</a>
     </header>
 
     <div ng-view></div>
