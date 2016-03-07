@@ -16,6 +16,23 @@ myApp.factory('Payment', function($http, $location){
 
 });
 
+myApp.factory('Calendar', function(){
+
+  var displayTime = function(time) {
+    var noSeconds = time.slice(0,5);
+    var hours24 = parseInt(noSeconds.substring(0,2));
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = noSeconds.substring(2);
+    return hours + minutes + amPm;
+  };
+
+  return {
+    displayTime: displayTime
+  };
+
+});
+
 
 myApp.factory('Session', function($http, $location) {
   var createSession = function(session) {

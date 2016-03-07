@@ -1,5 +1,5 @@
 
-myApp.controller('SessionController', function ($scope, Session, Auth, Review, $window) {
+myApp.controller('SessionController', function ($scope, Session, Auth, Review, $window, Calendar) {
 
   $scope.sessions = [];
 
@@ -106,14 +106,9 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
     }
   };
   //format time for display on session card
-  $scope.displayTime = function(time) {
-    var noSeconds = time.slice(0,5);
-    var hours24 = parseInt(noSeconds.substring(0,2));
-    var hours = ((hours24 + 11) % 12) + 1;
-    var amPm = hours24 > 11 ? 'pm' : 'am';
-    var minutes = noSeconds.substring(2);
-    return hours + minutes + amPm;
-  };
+  $scope.displayTime = function(time){
+    return Calendar.displayTime(time);
+  }
 
 
   $scope.isLoggedIn = function () {
@@ -127,7 +122,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   $scope.isLoggedIn();
 })
 
-.controller('CreateSessionController', function ($scope, Upload, Session, Auth, $window) {
+.controller('CreateSessionController', function ($scope, Upload, Session, Auth, $window, Calendar) {
   $scope.session = {};
   // event is an array of session time objects w 3 properties: id, date, and time
   $scope.events = [];
@@ -212,14 +207,9 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   };
 
     //format time for display on session card
-  $scope.displayTime = function(time) {
-    var noSeconds = time.slice(0,5);
-    var hours24 = parseInt(noSeconds.substring(0,2));
-    var hours = ((hours24 + 11) % 12) + 1;
-    var amPm = hours24 > 11 ? 'pm' : 'am';
-    var minutes = noSeconds.substring(2);
-    return hours + minutes + amPm;
-  };
+  $scope.displayTime = function(time){
+    return Calendar.displayTime(time);
+  }
 
 });
 
