@@ -21,7 +21,6 @@
             <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
           </select>
         </div>
-        <li class="session-full button" ng-if="session.status===true">Session Full</li>
         <li class="registration"><button class="button" ng-click="delete(session)">Delete</button></li>
       </ul>
     </div>

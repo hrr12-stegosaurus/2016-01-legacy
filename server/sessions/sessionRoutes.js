@@ -14,4 +14,6 @@ module.exports = function (app){
   
   app.delete('/', sessionController.deleteSession);
 
+  app.post('/register', sessionController.getRegistered);
+
 };

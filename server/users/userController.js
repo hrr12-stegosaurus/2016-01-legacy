@@ -68,7 +68,8 @@ module.exports.getSignedInUser = function(req, res){
 };
 
 module.exports.getUser = function(req, res) {
-  User.findAll({ where: {id: req.body.userId }})
+
+  User.findAll( {where: { id: req.body.userId }})
     .then(function (user) {
       res.send(user)
     })

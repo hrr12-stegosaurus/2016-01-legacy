@@ -4,6 +4,7 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar)
   $scope.email;
   $scope.age;
   $scope.userId;
+  $scope.registered;
 
   $scope.displayTime = function(time){
     return Calendar.displayTime(time);
@@ -20,6 +21,9 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar)
         $scope.email = user.data[0].email;
         Session.getUserSessions(user.config.data.userId, function(sessions) {
           $scope.sessions = sessions;
+        })
+        Session.getRegistered(user.config.data.userId, function(registered) {
+          $scope.registered = registered;
         })
       })
     })
