@@ -85,7 +85,7 @@
       Selected Session Date/Times
       <tr ng-repeat="event in events">
           <td>{{ event.day | date:'longDate' }}</td>
-          <td>@ {{ event.time }}</td>
+          <td>@ {{ displayTime(event.time) }}</td>
           <td><button ng-click="deleteEvent(event)" type="button" class="remove-date">Remove</button></td>
        </tr>
     </tbody>
@@ -102,7 +102,7 @@
     <form ng-app="fileUpload" name="form">
       Single Image with validations
       <button ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
-      ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+      ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
       ngf-resize="{width: 100, height: 100}">Select</button>
       <button type="submit" ng-click="submit()">submit</button>
     </form>
