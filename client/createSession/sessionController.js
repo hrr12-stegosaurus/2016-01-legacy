@@ -187,18 +187,15 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   };
   $scope.isLoggedIn();
 
-  $scope.submit = function() {
-    if ($scope.form.file.$valid && $scope.file) {
-      $scope.upload($scope.file);
-    }
-    console.log('.$ngfDataUrl'+$scope.file.$ngfDataUrl)
-    $scope.session.image = $scope.file.$ngfDataUrl;
-
-  };
-
   // upload on file select or drop
   $scope.upload = function (file) {
-    console.log(file);
+    var r = new FileReader();
+    r.onload = function(){ 
+      console.log(r.result);
+      $scope.session.image = r.result;
+    };
+    r.readAsDataURL(file);    
+    $scope.file=file;
       Upload.upload({
           url: 'upload/url',
           data: {file: file, 'username': $scope.username}
