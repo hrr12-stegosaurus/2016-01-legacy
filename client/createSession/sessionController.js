@@ -17,6 +17,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
 
     Auth.getSignedInUser().then(function (signed) {
       Auth.getUser(signed.data.UserId, function(user) {
+
         var registerInfo = {
           UserId: signed.data.UserId,
           tutorEmail: session.User.email,
@@ -28,6 +29,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
           date: date,
           image: session.image
         };
+        
         Session.register(registerInfo);
       })
     })

@@ -68,6 +68,17 @@ myApp.factory('Session', function($http, $location) {
     });
   };
 
+  var getRegistered = function(userId, callback) {
+    return $http({
+      method: 'POST',
+      url: '/sessions/register',
+      data: { id: userId }
+    })
+    .then(function(registered) {
+      callback(registered.data);
+    });
+  };
+
   var getUserSessions = function(userId, callback) {
     return $http({
       method: 'POST',
@@ -100,6 +111,7 @@ myApp.factory('Session', function($http, $location) {
   };
 
   return {
+    getRegistered: getRegistered,
     getUserSessions: getUserSessions,
     createSession: createSession,
     deleteSession: deleteSession,

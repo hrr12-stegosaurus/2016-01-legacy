@@ -128,4 +128,21 @@ module.exports.registerSession = function(req, res) {
       console.log('Email sent.');
     }
   });
+
+};
+
+module.exports.getRegistered = function(req, res) {
+  console.log("HERE =====================>", req.body.id);
+  Registered.findAll({ where: {UserId: req.body.id} }).then(function(registered) {
+    if (registered){
+      res.json(registered);
+    } else {
+      console.log('No sessions found');
+      res.end();
+    }
+  })
+  .catch(function (err) {
+    console.error('Error getting sessions: ', err);
+    res.end();
+  });
 };
