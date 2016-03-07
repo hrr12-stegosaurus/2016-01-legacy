@@ -43,7 +43,16 @@ var Review = orm.define('Review', {
 var Session = orm.define('Session', {
   topic: Sequelize.STRING,
   description: Sequelize.STRING,
-  /*startTime: Sequelize.DATE,*/
+  link: Sequelize.TEXT,
+  status: Sequelize.BOOLEAN,
+  category: Sequelize.STRING,
+  image: Sequelize.TEXT
+});
+
+var Registered = orm.define('Registered', {
+  topic: Sequelize.STRING,
+  description: Sequelize.STRING,
+  date: Sequelize.STRING,
   link: Sequelize.TEXT,
   status: Sequelize.BOOLEAN,
   category: Sequelize.STRING,
@@ -55,8 +64,12 @@ var Calendar = orm.define('Calendar', {
   time: Sequelize.STRING
 });
 
+User.hasMany(Registered);
+Registered.belongsTo(User);
+
 User.hasMany(Session);
 Session.belongsTo(User);
+
 User.hasMany(Review);
 Review.belongsTo(User);
 
