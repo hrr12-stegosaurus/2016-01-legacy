@@ -6,7 +6,7 @@
     <div>Email: {{email}}</div>
     <div>Member Since: {{age | date:'longDate' }}</div>
     <br>
-    <h1 class="subhead">Your Lessons</h1>
+    <h1 class="subhead">Teaching</h1>
     <div class="sessionContainer">
       <ul class="session" ng-class="session-{{session.category}}" ng-repeat="session in sessions | filter:filterBox | filter:sessionFilter | filter:filterOptions | orderBy:'startTime'">
         <img ng-show="session.image!=NULL" class="photo" src="{{session.image}}" width="350px" height="200px">
@@ -22,6 +22,21 @@
           </select>
         </div>
         <li class="registration"><button class="button" ng-click="delete(session)">Delete</button></li>
+      </ul>
+    </div>
+    <h1 class="subhead">Learning</h1>
+    <div class="sessionContainer">
+      <ul class="session" ng-class="session-{{session.category}}" ng-repeat="session in registered | filter:filterBox | filter:sessionFilter | filter:filterOptions | orderBy:'startTime'">
+        <img ng-show="session.image!=NULL" class="photo" src="{{session.image}}" width="350px" height="200px">
+        <img ng-show="session.image==NULL" class="photo" src="images/{{session.category}}.jpg">
+        <div class="sessionDetails">
+          <li class="topic content">{{session.topic}}</li>
+          <li class="description content">{{session.description}}</li>
+          <li class="category content"><span class="bold">Category: </span>{{session.category}}</li>
+          <li class="tutor content"><span class="bold">Tutor: </span>{{session.tutor}}</li>
+          <li class="tutor content"><span class="bold">Date: </span>{{session.date | date:"longDate"}}</li>
+          <li class="tutor content"><span class="bold">Vide Chat: <a href="{{session.link}}" target="_blank">Click Here</a> </span></li>
+        </div>
       </ul>
     </div>
   </div>

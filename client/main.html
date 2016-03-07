@@ -38,7 +38,7 @@
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
 
-      <a class="button pay-btn" href="#/payment">Register</a>
+      <a class="button pay-btn" href="#/payment" ng-click="register(session, selected)">Register</a>
 
       <li class="tutor content" ng-show="averageRating[session.User.id]">{{session.User.username}} is rated at {{averageRating[session.User.id]}} stars</li>
       <li class="tutor content" ng-hide="averageRating[session.User.id]">{{session.User.username}} has not been reviewed yet</li>
@@ -58,6 +58,6 @@
 
       <li class="time content"><span class="bold"></span></li>
     </div>
-    <li class="registration"><button class="button" ng-click="register(session, selected)">Register</button></li>
+<!--     <li class="registration"><button class="button" ng-click="register(session, selected)">Register</button></li> -->
   </ul>
 </div>
