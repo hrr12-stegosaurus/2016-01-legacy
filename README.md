@@ -1,12 +1,12 @@
 # Learn it Now!
 
- A live one-on-one knowledge sharing platform.
+> A live one-on-one knowledge sharing platform.
 
 ## Team
 
-  - __Product Owner__: Kelly von Borstel
-  - __Scrum Master__: Devonte MacGlashan
-  - __Development Team Members__: Maz Atighi, Pierre Teo, Pedro Torres-Picon
+  - __Product Owner__: Tom Coughlin	
+  - __Scrum Master__: Ted Hsiao
+  - __Development Team Members__: Calvin Le, Sonny Sheth
   
 ## Table of Contents
 
@@ -20,8 +20,8 @@
 ## Usage
 http://learnitnow.herokuapp.com/
 
-If you have knowledge to share, sign in and post.
-If you want to learn, just sign up with your email.
+If you have knowledge to share, create a lesson.
+If you want to register for a lesson, pick an available appointment and pay the lesson fee.
 
 ## Requirements
 
@@ -46,7 +46,6 @@ bower install
 #### Create Database
 
 mysql.server start
-
 CREATE DATABASE learnitnowdb
 
 ####  Set up Mailgun
@@ -65,8 +64,7 @@ https://developer.appear.in/
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/hrr12-velociraptors/velociraptors/issues)
-
+View the project roadmap [here](https://github.com/hrr12-stegosaurus/2016-01-greenfield/issues)
 
 ## Contributing
 
