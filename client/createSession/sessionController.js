@@ -19,6 +19,8 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
       Auth.getUser(signed.data.UserId, function(user) {
 
         var registerInfo = {
+          tutor:  session.User.username,
+          tutorId: session.User.id,
           UserId: signed.data.UserId,
           tutorEmail: session.User.email,
           tuteeEmail: user.data.email,
