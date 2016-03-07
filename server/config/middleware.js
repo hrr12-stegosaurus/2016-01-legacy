@@ -7,12 +7,15 @@ var User = require('../../db/models').User;
 var fbAuth = require('./fbauth')
 var LocalStrategy2 = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var braintree = require('braintree');
 
 module.exports = function (app, express) {
 
   var userRouter = express.Router();
   var sessionRouter = express.Router();
+
   var reviewRouter = express.Router();
+
 
   app.use(bodyParser.urlencoded({ extend: true }));
   app.use(bodyParser.json());
@@ -21,14 +24,14 @@ module.exports = function (app, express) {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(__dirname + '/../../client'));
-  
+
   passport.use(LocalStrategy);
-  
+
   // stores userId on every new request
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
-  
+
   // finds user signed in based on userId
   passport.deserializeUser(function (id, done) {
     User.findById(id)
@@ -40,7 +43,7 @@ module.exports = function (app, express) {
     });
   });
 
-  //facebook login 
+  //facebook login
   app.get('/auth/facebook',
     passport.authenticate('facebook', {scope: ['email']}));
 
@@ -92,4 +95,46 @@ module.exports = function (app, express) {
   require('../users/userRoutes.js')(userRouter);
   require('../sessions/sessionRoutes.js')(sessionRouter);
   require('../reviews/reviewRoutes.js')(reviewRouter);
+
+
+
+  // Braintree
+
+  var gateway = braintree.connect({
+    environment: braintree.Environment.Sandbox,
+    merchantId: 'cd4c7jn9wtpmgzhg',
+    publicKey: 'w4bz7s8wkmm3x357',
+    privateKey: '5714be889a0d4dd686ffd77abbe9d908'
+  });
+
+  app.get("/client_token", function (req, res) {
+    gateway.clientToken.generate({}, function (err, response) {
+      res.send(response.clientToken);
+    });
+  });
+
+  app.post("/checkout", function (req, res) {
+    var nonce = req.body.payment_method_nonce;
+
+    gateway.transaction.sale({
+      amount: '10.00',
+      paymentMethodNonce: nonce,
+      options: {
+        submitForSettlement: true
+      }
+    }, function (err, result) {
+      if(err){
+        console.log(err)
+      } else {
+        res.redirect('/#/');
+      }
+    });
+  });
+
+
+  app.use('/users', userRouter);
+  app.use('/sessions', sessionRouter);
+
+  require('../users/userRoutes.js')(userRouter);
+  require('../sessions/sessionRoutes.js')(sessionRouter);
 };
