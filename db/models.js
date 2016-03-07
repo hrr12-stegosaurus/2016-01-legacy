@@ -50,6 +50,8 @@ var Session = orm.define('Session', {
 });
 
 var Registered = orm.define('Registered', {
+  tutor: Sequelize.STRING,
+  tutorId: Sequelize.INTEGER,
   tutorEmail: Sequelize.STRING,
   tuteeEmail: Sequelize.STRING,
   topic: Sequelize.STRING,
