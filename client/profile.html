@@ -34,7 +34,7 @@
           <li class="description content">{{session.description}}</li>
           <li class="category content"><span class="bold">Category: </span>{{session.category}}</li>
           <li class="tutor content"><span class="bold">Tutor: </span>{{session.tutor}}</li>
-          <li class="tutor content"><span class="bold">Date: </span>{{session.date | date:"longDate"}}</li>
+          <li class="tutor content"><span class="bold">Date: </span>{{session.date | date:'MM/dd/yyyy @ h:mma'}}</li>
           <li class="tutor content"><span class="bold">Vide Chat: <a href="{{session.link}}" target="_blank">Click Here</a> </span></li>
         </div>
       </ul>
