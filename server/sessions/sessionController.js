@@ -109,6 +109,8 @@ module.exports.checkAuth = function(req, res, next) {
 module.exports.registerSession = function(req, res) {
   var mailgun = new Mailgun({ apiKey: config.mailGunAPIKey, domain: config.mailGunDomain });
 
+  console.log("HEY LOOK HERE BITCH ==========>", req.body.tuteeEmail);
+
   var data = {
     from: 'learnitnow@learnitnow.herokuapp.com',
     to: [req.body.tuteeEmail, req.body.tutorEmail],

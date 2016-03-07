@@ -16,9 +16,15 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   $scope.register = function (session, tuteeEmail){
 
     // send an email to user and register them
-    var registerInfo = {tuteeEmail: tuteeEmail, link: session.link, topic: session.topic, tutorEmail: session.User.email};
-
-    Session.register(registerInfo);
+    // profile email
+    // calendar/date
+    // description
+    Auth.getSignedInUser().then(function (user) {
+      Auth.getUser(user.data.UserId, function(user) {
+        var registerInfo = {tuteeEmail: user.data.email, link: session.link, topic: session.topic, tutorEmail: session.User.email};
+        Session.register(registerInfo);
+      })
+    })
 
     // when someone registers for a session, status of session changes to true
     var updateInfo = {id: session.id, status: true };
