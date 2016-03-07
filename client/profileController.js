@@ -1,9 +1,13 @@
-myApp.controller('ProfileController', function ($scope, Session, Auth) {
+myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar) {
   $scope.sessions;
   $scope.username;
   $scope.email;
   $scope.age;
   $scope.userId;
+
+  $scope.displayTime = function(time){
+    return Calendar.displayTime(time);
+  }
 
   $scope.getUser = function() {
     Auth.getSignedInUser().then(function (user) {
