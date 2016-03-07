@@ -33,8 +33,8 @@
       <li class="category content"><span class="bold">Category: </span>{{session.category}}</li>
       <li class="tutor content"><span class="bold">Tutor: </span>{{session.User.username}}</li>
 
-      <select class="session-dates" ng-model="sessionDate">
-        <option value="">Select Date</option>
+      <select class="session-dates" ng-model="selected">
+        <option value="" selected=selected>Select Date</option>
         <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
       </select>
 
@@ -58,6 +58,6 @@
 
       <li class="time content"><span class="bold"></span></li>
     </div>
-    <li class="registration"><button class="button" ng-click="register(session, date.day, date.time)">Register</button></li>
+    <li class="registration"><button class="button" ng-click="register(session, selected)">Register</button></li>
   </ul>
 </div>

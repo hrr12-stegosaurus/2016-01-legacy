@@ -13,14 +13,8 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   $scope.getSessions();
   $scope.isClicked = false;
 
-  $scope.register = function (session, day, time){
+  $scope.register = function (session, date){
 
-    // send an email to user and register them
-    // profile email
-    // calendar/date
-    // description
-    console.log(day);
-    console.log(time);
     Auth.getSignedInUser().then(function (signed) {
       Auth.getUser(signed.data.UserId, function(user) {
         var registerInfo = {
@@ -31,7 +25,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
           description: session.description,
           link: session.link,
           category: session.category,
-          date: day + " @ " + time,
+          date: date,
           image: session.image
         };
         Session.register(registerInfo);
