@@ -61,7 +61,7 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
   $scope.prevCard = function(i){
     if($scope.i > 0){
       $scope.i -=1;
-      console.log($scope.sessions);
+      /*console.log($scope.sessions);*/
     }
   }
 
@@ -71,6 +71,8 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
 
   $scope.nextLearnCard = function(j){
     if($scope.j < $scope.registered.length - 1){
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$');
+      console.log($scope.registered);
       $scope.j +=1;
     }
   }
