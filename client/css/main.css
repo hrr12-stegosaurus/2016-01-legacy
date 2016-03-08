@@ -237,7 +237,7 @@ input.keywordFilter {
   display: inline-block;
   border-radius: 10px;
   max-width: 350px;
-  width: 30%;
+  /*width: 30%;*/
   height: 530px;
   position: relative;
   border: 1px solid #ccc;
@@ -299,6 +299,15 @@ input.keywordFilter {
   border: 0;
 }
 
+.card-buttons {
+  margin-left: 50px;
+  margin-top: -20px;
+}
+
+.teaching-container {
+  display: inline-block;
+}
+
 /***** form styles *****/
 
 .headerBar {
@@ -316,7 +325,7 @@ input.keywordFilter {
   font-size: 1.6em;
   font-weight: 500;
   color: #507484;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .formContainer input {
   color: #666;

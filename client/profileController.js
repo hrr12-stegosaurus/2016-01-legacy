@@ -20,7 +20,10 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
         $scope.username = user.data[0].username;
         $scope.email = user.data[0].email;
         Session.getUserSessions(user.config.data.userId, function(sessions) {
+<<<<<<< 1d2c72c76c6312ae6326f2bb0ef481cc1f35aba9
 
+=======
+>>>>>>> (style) classes taught and registered side-by-side
           $scope.sessions = sessions;
         })
         Session.getRegistered(user.config.data.userId, function(registered) {
@@ -62,5 +65,23 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
     }
   }
 
+<<<<<<< 1d2c72c76c6312ae6326f2bb0ef481cc1f35aba9
+=======
+  $scope.j = 0;
+
+  $scope.nextLearnCard = function(j){
+    if($scope.j < $scope.registered.length - 1){
+      $scope.j +=1;
+    }
+  }
+
+  $scope.prevLearnCard = function(j){
+    if($scope.j > 0){
+      $scope.j -=1;
+    }
+  }
+
+
+>>>>>>> (style) classes taught and registered side-by-side
   $scope.getUser();
 })
