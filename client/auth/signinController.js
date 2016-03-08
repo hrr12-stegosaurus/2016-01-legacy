@@ -9,7 +9,7 @@ myApp.controller('SigninController', function ($scope, Auth, $window, $location,
     Auth.signin(user).then(function (user){
         Auth.setLoggedIn(true);
         // redirect
-        $window.location.href = '/#/create';
+        $window.location.href = '/#/profile';
     });
   };
 });
