@@ -65,6 +65,8 @@ module.exports.isLoggedIn = function (req, res){
 
 // used to retrieve signed-in user's userId to attach to session that the user creates
 module.exports.getSignedInUser = function(req, res){
+  console.log('************')
+  console.log(req.user.id,'************')
   res.send({ UserId: req.user.id });
 };
 

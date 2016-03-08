@@ -51,12 +51,42 @@ myApp.controller('ProfileController', function ($http, $rootScope, $scope, $wind
   }
 
 
+  // $scope.deleteAccount = function(){
+  //   Auth.getSignedInUser().then(function(user){
+  //     Auth.deleteUser(user.data.UserId)
+  //   }).then(function(){
+  //     $window.location.href = '/#/';
+  //   })
+  // }
+
   $scope.deleteAccount = function(){
+    var users
     Auth.getSignedInUser().then(function(user){
-      Auth.deleteUser(user.data.UserId)
-    }).then(function(){
-      $window.location.href = '/#/';
+      users = user;
     })
+    swal({   title: "Are you sure?",
+      text: "You will not be able to recover.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel please!",
+      closeOnConfirm: false,
+      closeOnCancel: false },
+      function(isConfirm){
+        if (isConfirm) {
+          swal("Deleted!",
+           "Your account has been deleted.",
+            "success");
+          
+          Auth.deleteUser(users.data.UserId)
+          $window.location.href = '/#/';
+        } else {
+          swal("Cancelled",
+          "Your account is safe :)",
+          "error");
+        }
+      });
   }
 
   $scope.i = 0;
