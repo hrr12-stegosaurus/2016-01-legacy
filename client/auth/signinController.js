@@ -8,6 +8,7 @@ myApp.controller('SigninController', function ($scope, Auth, $window, $location,
   $scope.signin = function (user) {
     Auth.signin(user).then(function (user){
         Auth.setLoggedIn(true);
+        $scope.$emit('loggedIn');
         // redirect
         $window.location.href = '/#/profile';
     });
