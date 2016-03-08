@@ -24,9 +24,9 @@
 
       <ul class="session" ng-class="session-{{sessions[i].category}}">
 
-        <img ng-show="session.image!=NULL" class="photo" src="{{sessions[0].image}}" width="350px" height="200px">
+        <img ng-show="sessions[i].image!=NULL" class="photo" src="{{sessions[i].image}}" width="350px" height="200px">
 
-        <img ng-show="sessions.image==NULL" class="photo" src="images/{{sessions[i].category}}.jpg">
+        <img ng-show="sessions[i].image==NULL" class="photo" src="images/{{sessions[i].category}}.jpg">
 
         <div class="sessionDetails">
 
@@ -75,9 +75,9 @@
 
       <ul class="session" ng-class="session-{{registered[j].category}}">
 
-        <img ng-show="session.image!=NULL" class="photo" src="{{registered[j].image}}" width="350px" height="200px">
+        <img ng-show="registered[j].image!=NULL" class="photo" src="{{registered[j].image}}" width="350px" height="200px">
 
-        <img ng-show="session.image==NULL" class="photo" src="images/{{registered[j].category}}.jpg">
+        <img ng-show="registered[j].image==NULL" class="photo" src="images/{{registered[j].category}}.jpg">
 
         <div class="sessionDetails">
 
