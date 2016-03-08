@@ -229,7 +229,7 @@ input.keywordFilter {
   margin: 0 auto;
 }
 .session {
-  font-family: Hind, sans-serif;
+/*  font-family: Hind, sans-serif;
   overflow: hidden;
   list-style: none;
   background-color: #efefef;
@@ -240,7 +240,7 @@ input.keywordFilter {
   /*width: 30%;*/
   height: 530px;
   position: relative;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc;*/
 }
 .photo {
   width: 100%;

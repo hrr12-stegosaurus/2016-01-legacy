@@ -16,6 +16,10 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
   $scope.getUser = function() {
     Auth.getSignedInUser().then(function (user) {
       Auth.getUser(user.data.UserId, function(user) {
+<<<<<<< dfc9dcf2b27a30046c2e640d471588f77ab0b41b
+=======
+        $scope.userId = user.data[0].id;
+>>>>>>> (feat) Display "thank you for feedback" text.
         $scope.age = user.data[0].createdAt;
         $scope.username = user.data[0].username;
         $scope.email = user.data[0].email;

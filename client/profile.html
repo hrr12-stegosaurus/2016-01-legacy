@@ -8,7 +8,7 @@
     <div>Name: {{username}}</div>
     <div>Email: {{email}}</div>
     <div>Member Since: {{age | date:'longDate' }}</div>
-    <div>Rating: {{averageRating}} out of 5 stars</div>   
+    <div ng-show="averageRating">Rating: {{averageRating}} out of 5 stars</div>   
     <br>
 
     <button class="tutor content" ng-click="deleteAccount(); signout()"><span class="bold">Delete Account</span></button>
