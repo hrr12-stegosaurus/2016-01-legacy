@@ -92,15 +92,17 @@
     </table>
     <hr>
     <br>
-    
-    <br>
-    <span>
-      <button ngf-select="upload($file)">Upload Thumnail Image (Optional)</button>
+    <span class="fleft"> 
+      <button ngf-select="upload($file)">Upload Thumnail Image (Optional)</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      <br>
+      <button class="fleft" class="submit">Create Session</button>
     </span>
-    <img ng-show="file" ngf-thumbnail="file" width="100px">
+    <div id="uploadbox">
+      <img ng-show="file" ngf-thumbnail="file" width="100px">
+    </div>
     <br>
     <br>
-    <button class="submit">Create Session</button>
   </form>
 
 </div>
