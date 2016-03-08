@@ -208,7 +208,8 @@ myApp.factory('Auth', function ($http, $location, $window) {
     return $http({
       method: 'DELETE',
       url: '/users/deleteUser',
-      data: {userId: userId}
+      data: {userId: userId},
+      headers: {"Content-Type": "application/json;charset=utf-8"}
     })
     .then(function(user){
       console.log("user deleted")

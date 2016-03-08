@@ -1,4 +1,4 @@
-myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar) {
+myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar, $window) {
   $scope.sessions;
   $scope.username;
   $scope.email;
@@ -38,8 +38,9 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar)
 
   $scope.deleteAccount = function(){
     Auth.getSignedInUser().then(function(user){
-      console.log(user.data.UserId, "****")
       Auth.deleteUser(user.data.UserId)
+    }).then(function(){
+      $window.location.href = '/#/';
     })
   }
 
