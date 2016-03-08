@@ -28,6 +28,10 @@ myApp.config(function ($routeProvider) {
       templateUrl: 'payments/payments.html',
       controller: 'PaymentsController'
     })
+    .when('/edit', {
+      templateUrl: 'editSession.html',
+      controller: 'EditController'
+    })
     .otherwise({
       redirectTo: '/'
     });

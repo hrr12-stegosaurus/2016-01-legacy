@@ -132,7 +132,6 @@ module.exports.registerSession = function(req, res) {
 };
 
 module.exports.getRegistered = function(req, res) {
-  console.log("HERE =====================>", req.body.id);
   Registered.findAll({ where: {UserId: req.body.id} }).then(function(registered) {
     if (registered){
       res.json(registered);
@@ -145,4 +144,24 @@ module.exports.getRegistered = function(req, res) {
     console.error('Error getting sessions: ', err);
     res.end();
   });
+};
+
+module.exports.updateSession = function(req, res) {
+  for (var i = 0; i < req.body.Calendars.length; i++) {
+    delete req.body.Calendars[i].iden;
+  }
+  delete req.body.startTime;
+  delete req.body.link;
+  var dates = req.body.Calendars;
+  delete req.body.Calendars;
+  Session.findById(req.body.id).then(function(session) {
+    session.updateAttributes(req.body);
+  })
+  Calendar.destroy({where:{ SessionId: dates[0].SessionId }});
+  for (var i = 0; i < dates.length; i++) {
+    var date = dates[i];
+    date.SessionId = req.body.id;
+    console.log("DATE: ", date);
+    Calendar.create(date);
+  }
 };

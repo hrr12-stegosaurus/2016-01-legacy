@@ -46,6 +46,18 @@ myApp.factory('Session', function($http, $location) {
     });
   };
 
+ var editSession = function(session) {
+   console.log(session);
+   return $http({
+     method: 'POST',
+     url: '/sessions/update',
+     data: session
+   })
+   .then(function(session) {
+     return session.data;
+   });
+ };
+
   var deleteSession = function(session, callback) {
     return $http({
       method: 'DELETE',
@@ -111,6 +123,7 @@ myApp.factory('Session', function($http, $location) {
   };
 
   return {
+    editSession: editSession,
     getRegistered: getRegistered,
     getUserSessions: getUserSessions,
     createSession: createSession,

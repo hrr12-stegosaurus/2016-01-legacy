@@ -11,6 +11,8 @@ module.exports = function (app){
   app.post('/send', sessionController.registerSession);
   
   app.put('/', sessionController.updateStatus);
+
+  app.post('/update', sessionController.updateSession);
   
   app.delete('/', sessionController.deleteSession);
 
