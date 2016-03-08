@@ -31,7 +31,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
           date: date,
           image: session.image
         };
-        
+
         Session.register(registerInfo);
       })
     })
@@ -135,8 +135,10 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   };
 
   $scope.deleteEvent = function(event){
+    console.log('delete works')
+    console.log(event)
     for(var i = 0; i < $scope.events.length; i++){
-      if($scope.events[i].iden === event.id){
+      if($scope.events[i].iden === event.iden){
         $scope.events.splice(i, 1);
       }
     }
@@ -172,11 +174,11 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
   // upload on file select or drop
   $scope.upload = function (file) {
     var r = new FileReader();
-    r.onload = function(){ 
+    r.onload = function(){
       console.log(r.result);
       $scope.session.image = r.result;
     };
-    r.readAsDataURL(file);    
+    r.readAsDataURL(file);
     $scope.file=file;
       Upload.upload({
           url: 'upload/url',
