@@ -20,6 +20,7 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
         $scope.username = user.data[0].username;
         $scope.email = user.data[0].email;
         Session.getUserSessions(user.config.data.userId, function(sessions) {
+
           $scope.sessions = sessions;
         })
         Session.getRegistered(user.config.data.userId, function(registered) {
@@ -36,12 +37,29 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
     });
   }
 
+
   $scope.deleteAccount = function(){
     Auth.getSignedInUser().then(function(user){
       Auth.deleteUser(user.data.UserId)
     }).then(function(){
       $window.location.href = '/#/';
     })
+  }
+
+  $scope.i = 0;
+
+  $scope.nextCard = function(i){
+    if($scope.i < $scope.sessions.length){
+      $scope.i++;
+      console.log($scope.sessions);
+    }
+  }
+
+  $scope.prevCard = function(i){
+    if($scope.i > 0){
+      $scope.i--;
+      console.log($scope.sessions);
+    }
   }
 
   $scope.getUser();
