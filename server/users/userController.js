@@ -78,3 +78,25 @@ module.exports.getUser = function(req, res) {
       res.end();
     });
 };
+
+module.exports.deleteUser = function(req, res){
+  console.log(req,'******************')
+  User.findById(req.body.userId).then(function(user){
+    console.log('user deleted', user);
+    return user.destroy();
+  })
+
+  // Session.findById(req.body.id).then(function (session){
+  //   return session.destroy();
+  // }).then(function(){
+  //   Session.findAll({}).then(function (sessions) {
+  //     if (sessions){
+  //       res.json(sessions);
+  //     } else {
+  //       console.log('No sessions found');
+  //       res.end();
+  //     }
+  //   })
+  //   console.log('Session was deleted.');
+  // });
+}

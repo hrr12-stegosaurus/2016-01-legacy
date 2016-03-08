@@ -204,6 +204,17 @@ myApp.factory('Auth', function ($http, $location, $window) {
     });
   }
 
+  var deleteUser = function(userId){
+    return $http({
+      method: 'DELETE',
+      url: '/users/deleteUser',
+      data: {userId: userId}
+    })
+    .then(function(user){
+      console.log("user deleted")
+    })
+  }
+
   return {
     getUser: getUser,
     getSignedInUser : getSignedInUser,
@@ -212,7 +223,8 @@ myApp.factory('Auth', function ($http, $location, $window) {
     signout: signout,
     isLoggedIn: isLoggedIn,
     getLoggedIn: getLoggedIn,
-    setLoggedIn: setLoggedIn
+    setLoggedIn: setLoggedIn,
+    deleteUser: deleteUser
   };
 });
 

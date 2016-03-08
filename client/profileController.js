@@ -36,7 +36,12 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar)
     });
   }
 
-
+  $scope.deleteAccount = function(){
+    Auth.getSignedInUser().then(function(user){
+      console.log(user.data.UserId, "****")
+      Auth.deleteUser(user.data.UserId)
+    })
+  }
 
   $scope.getUser();
 })
