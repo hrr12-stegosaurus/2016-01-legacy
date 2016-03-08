@@ -16,9 +16,9 @@
 
   <div class="teaching-container">
 
-    <h1 class="subhead">Teaching</h1>
+    <h1 class="subhead" ng-show="sessions.length">Teaching</h1>
 
-    <div class="sessionContainer">
+    <div class="sessionContainer" ng-show="sessions.length">
 
       <ul class="session" ng-class="session-{{sessions[i].category}}">
 
@@ -56,15 +56,15 @@
       </ul>
 
     </div>
-    <div class="card-buttons">
-      <button type="button" ng-click="nextCard()">Next Card</button>
-      <button type="button" ng-click="prevCard()">Prev Card</button>
+    <div class="card-buttons" ng-show="sessions.length">
+      <button type="button" ng-click="prevCard()">Previous</button>
+      <button type="button" ng-click="nextCard()">Next</button>
     </div>
 </div>
 
-<div class="teaching-container">
+<div class="teaching-container" ng-show="registered.length">
 
-    <h1 class="subhead">Learning</h1>
+    <h1 class="subhead" ng-show="registered.length">Learning</h1>
 
     <div class="sessionContainer">
 
@@ -92,9 +92,9 @@
       </ul>
     </div>
 
-    <div class="card-buttons">
-      <button type="button" ng-click="nextLearnCard()">Next Card</button>
-      <button type="button" ng-click="prevLearnCard()">Prev Card</button>
+    <div class="card-buttons" ng-show="registered.length">
+      <button type="button" ng-click="prevLearnCard()">Previous</button>
+      <button type="button" ng-click="nextLearnCard()">Next</button>
     </div>
 </div>
   </div>
