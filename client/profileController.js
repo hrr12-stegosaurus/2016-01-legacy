@@ -6,6 +6,8 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
   $scope.userId;
   $scope.registered;
   $scope.averageRating;
+  $scope.review = { rating: null };
+  $scope.reviewSubmitted = false;
 
   $scope.displayTime = function(time){
     return Calendar.displayTime(time);
@@ -76,6 +78,13 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
       $scope.j -=1;
     }
   }
+
+  // Send reviews to server/db. Object with rating and userId properties.
+  $scope.submitReview = function (userId) {
+    var rating = $scope.review.rating;
+    console.log('$scope.rating: ', $scope.review.rating, ', userId: ', userId)
+    Review.sendReviewToServer({rating, userId});
+  };
 
   $scope.getUser();
 })

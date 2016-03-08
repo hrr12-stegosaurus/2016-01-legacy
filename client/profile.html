@@ -8,9 +8,8 @@
     <div>Name: {{username}}</div>
     <div>Email: {{email}}</div>
     <div>Member Since: {{age | date:'longDate' }}</div>
-    <div>Rating: {{averageRating}}</div>   
+    <div>Rating: {{averageRating}} out of 5 stars</div>   
     <br>
-<<<<<<< 622fdf61f1c36ca868c954b3f2ba79f7054b445a
 
     <button class="tutor content" ng-click="deleteAccount(); signout()"><span class="bold">Delete Account</span></button>
 
@@ -71,6 +70,7 @@
         <img ng-show="session.image==NULL" class="photo" src="images/{{registered[j].category}}.jpg">
 
         <div class="sessionDetails">
+<<<<<<< 47d869fa63f28871cc7b8b802cf59ec3e1d095c1
 
           <li class="topic content">{{registered[j].topic}}</li>
 
@@ -79,6 +79,22 @@
           <li class="category content"><span class="bold">Category: </span>{{registered[j].category}}</li>
 
           <li class="tutor content"><span class="bold">Tutor: </span>{{registered[j].tutor}}</li>
+
+          <li class="tutor content" ng-hide="reviewSubmitted">How do you like your tutor?
+            <form>
+              <select name="rating" ng-model="review.rating">
+                <option value="1">*</option>
+                <option value="2">**</option>
+                <option value="3">***</option>
+                <option value="4">****</option>
+                <option value="5">*****</option>
+              </select>
+              <button class="button" ng-click="submitReview(session.tutorId); reviewSubmitted=true">Rate {{session.tutor | limitTo: 10}}{{session.tutor.length > 8 ? '...' : ''}}</button>
+            </form>
+          </li>
+
+          <li class="tutor content" ng-show="reviewSubmitted">Review submitted</li>
+          <li class="tutor content" ng-show="reviewSubmitted">Thanks for your feedback!</li>
 
           <li class="tutor content"><span class="bold">Date: </span>{{registered[j].date | date:'MM/dd/yyyy @ h:mma'}}</li>
 
