@@ -49,15 +49,15 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
   $scope.i = 0;
 
   $scope.nextCard = function(i){
-    if($scope.i < $scope.sessions.length){
-      $scope.i++;
+    if($scope.i < $scope.sessions.length - 1){
+      $scope.i +=1;
       console.log($scope.sessions);
     }
   }
 
   $scope.prevCard = function(i){
     if($scope.i > 0){
-      $scope.i--;
+      $scope.i -=1;
       console.log($scope.sessions);
     }
   }

@@ -47,13 +47,13 @@
           <select class="session-dates" ng-model="sessionDate">
 
             <option value="">Select Date</option>
-            <option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
+            <option ng-repeat="date in sessions[i].Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</option>
 
           </select>
 
         </div>
 
-        <li class="registration"><button class="button" ng-click="delete(session)">Delete</button></li>
+        <li class="registration"><button class="button" ng-click="delete(sessions[i])">Delete</button></li>
 
       </ul>
 
