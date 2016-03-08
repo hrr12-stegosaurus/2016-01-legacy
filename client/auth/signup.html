@@ -3,6 +3,9 @@
   <div class="headerBar"></div>
   <div class="formContainer" id='signup'>
     <h1 class="subhead">Sign Up</h1>
+    <p>If you already have an account, <a href="#/signin">Sign In</a> here.
+    <br>
+    <br>
     <form name="signupForm" ng-submit='signup(user)'>
       <label>Name </label><br>
       <input type='text' ng-model='user.username' required>
@@ -12,13 +15,10 @@
       <input type='text' ng-model='user.email' pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
       <br>
       <br>
-      <label>Password (1 upper, 1 lower and 1 number) </label><br>
+      <label>Password <span style="font-size: 10px; font-style: italic;">(1 upper, 1 lower and 1 number)</span> </label><br>
       <input type="password" ng-model='user.password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required><br>
       <br>
       <button class="submit">Sign Up</button>
     </form>
-    <br>
-    <br>
-    <p>If you already have an account, <a href="#/signin">Sign In</a> here.
   </div>
 </div>

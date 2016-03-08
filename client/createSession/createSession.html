@@ -80,8 +80,7 @@
       <md-option value="11:30:00">11:30 AM</md-option>
     </md-select>
     </md-input-container>
-    <br>
-    <span><button ng-click="addEvent()" type="button" class="add-date">Add</button></span>
+    <md-button ng-click="addEvent()" class="add-date">Add</md-button>
     <br>
     <br>
     <hr>
@@ -99,10 +98,10 @@
     <br>
 
     <span class="fleft">
-      <button ngf-select="upload($file)">Upload Thumnail Image (Optional)</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <md-button class="md-raised" ngf-select="upload($file)">Upload Thumnail Image (Optional)</md-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <br>
       <br>
-      <button class="fleft" class="submit">Create Session</button>
+      <button class="button" class="fleft" class="submit">Create Session</button>
     </span>
     <div id="uploadbox">
       <img ng-show="file" ngf-thumbnail="file" width="100px">

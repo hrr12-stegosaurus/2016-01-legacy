@@ -38,9 +38,8 @@
       <md-select ng-model="selected">
         <md-option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</md-option>
       </md-select>
+      <span><md-button href="#/payment" ng-click="register(session, selected)">Register</md-button></span>
       </md-input-container>
-
-      <md-button class="md-raised" href="#/payment" ng-click="register(session, selected)">Register</md-button>
 
       <li class="tutor content" ng-show="averageRatings[session.User.id]"><span style="font-style: italic;">{{session.User.username}} is rated at {{averageRatings[session.User.id]}} stars</span></li>
       <li class="tutor content" ng-hide="averageRatings[session.User.id]"><span style="font-style: italic">{{session.User.username}} has not been rated yet</span></li>

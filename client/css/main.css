@@ -244,7 +244,7 @@ input.keywordFilter {
   border: 1px solid #ccc;
 }
 .photo {
-/*  width: 100%;*/
+  width: 100%;
   border-radius: 10px 10px 0 0;
   margin-bottom: 20px;
 }
@@ -301,7 +301,7 @@ input.keywordFilter {
 }
 
 .card-buttons {
-  margin-left: 50px;
+  margin-left: 80px;
   margin-top: -20px;
 }
 

@@ -2,7 +2,8 @@
   <div class="headerBar"></div>
   <div class="formContainer" id='createSession'>
     <h1 class="subhead">Edit Session</h1>
-    <div 
+    <md-button class="md-raised" href="#/profile">Cancel Edits</md-button>
+    <div
     <form name="createSessionForm">
       <label>Topic</label><br>
       <input type='text' ng-model='session.topic' required>
@@ -14,71 +15,73 @@
       <br>
       <md-input-container>
       <label>Category &nbsp;&nbsp;</label>
-      <select class="sessionCategory" ng-model="session.category">
-        <option value="Programming" selected>Programming</option>
-        <option value="Language">Language</option>
-        <option value="Design">Design</option>
-        <option value="Music">Music</option>
-        <option value="Wellness">Wellness</option>
-        <option value="Cooking">Cooking</option>
-      </select>
+      <md-select class="sessionCategory" ng-model="session.category">
+        <md-option value="Programming" selected>Programming</md-option>
+        <md-option value="Language">Language</md-option>
+        <md-option value="Design">Design</md-option>
+        <md-option value="Music">Music</md-option>
+        <md-option value="Wellness">Wellness</md-option>
+        <md-option value="Cooking">Cooking</md-option>
+      </md-select>
+      </md-input-container>
       <br>
       <label>Date </label>
       <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate"></md-datepicker>
 
-      &nbsp;&nbsp;<label>Time&nbsp;&nbsp;</label>
-      <select ng-model="myTime">
-        <option value="">Please Select</option>
-        <option value="12:00:00">12:00 PM</option>
-        <option value="12:30:00">12:30 PM</option>
-        <option value="13:00:00">1:00 PM</option>
-        <option value="13:30:00">1:30 PM</option>
-        <option value="14:00:00">2:00 PM</option>
-        <option value="14:30:00">2:30 PM</option>
-        <option value="15:00:00">3:00 PM</option>
-        <option value="15:30:00">3:30 PM</option>
-        <option value="16:00:00">4:00 PM</option>
-        <option value="16:30:00">4:30 PM</option>
-        <option value="17:00:00">5:00 PM</option>
-        <option value="17:30:00">5:30 PM</option>
-        <option value="18:00:00">6:00 PM</option>
-        <option value="18:30:00">6:30 PM</option>
-        <option value="19:00:00">7:00 PM</option>
-        <option value="19:30:00">7:30 PM</option>
-        <option value="20:00:00">8:00 PM</option>
-        <option value="20:30:00">8:30 PM</option>
-        <option value="21:00:00">9:00 PM</option>
-        <option value="21:30:00">9:30 PM</option>
-        <option value="22:00:00">10:00 PM</option>
-        <option value="22:30:00">10:30 PM</option>
-        <option value="23:00:00">11:00 PM</option>
-        <option value="23:30:00">11:30 PM</option>
-        <option value="00:00:00">12:00 AM</option>
-        <option value="00:30:00">12:30 AM</option>
-        <option value="01:00:00">1:00 AM</option>
-        <option value="01:30:00">1:30 AM</option>
-        <option value="02:00:00">2:00 AM</option>
-        <option value="02:30:00">2:30 AM</option>
-        <option value="03:00:00">3:00 AM</option>
-        <option value="03:30:00">3:30 AM</option>
-        <option value="04:00:00">4:00 AM</option>
-        <option value="04:30:00">4:30 AM</option>
-        <option value="05:00:00">5:00 AM</option>
-        <option value="05:30:00">5:30 AM</option>
-        <option value="06:00:00">6:00 AM</option>
-        <option value="06:30:00">6:30 AM</option>
-        <option value="07:00:00">7:00 AM</option>
-        <option value="07:30:00">7:30 AM</option>
-        <option value="07:00:00">8:00 AM</option>
-        <option value="08:30:00">8:30 AM</option>
-        <option value="09:00:00">9:00 AM</option>
-        <option value="09:30:00">9:30 AM</option>
-        <option value="10:00:00">10:00 AM</option>
-        <option value="10:30:00">10:30 AM</option>
-        <option value="11:00:00">11:00 AM</option>
-        <option value="11:30:00">11:30 AM</option>
-      </select>
-      <button ng-click="addEvent()" type="button" class="add-date">Add</button>
+      <md-input-container>
+      <label>Time&nbsp;&nbsp;</label>
+      <md-select ng-model="myTime">
+        <md-option value="12:00:00">12:00 PM</md-option>
+        <md-option value="12:30:00">12:30 PM</md-option>
+        <md-option value="13:00:00">1:00 PM</md-option>
+        <md-option value="13:30:00">1:30 PM</md-option>
+        <md-option value="14:00:00">2:00 PM</md-option>
+        <md-option value="14:30:00">2:30 PM</md-option>
+        <md-option value="15:00:00">3:00 PM</md-option>
+        <md-option value="15:30:00">3:30 PM</md-option>
+        <md-option value="16:00:00">4:00 PM</md-option>
+        <md-option value="16:30:00">4:30 PM</md-option>
+        <md-option value="17:00:00">5:00 PM</md-option>
+        <md-option value="17:30:00">5:30 PM</md-option>
+        <md-option value="18:00:00">6:00 PM</md-option>
+        <md-option value="18:30:00">6:30 PM</md-option>
+        <md-option value="19:00:00">7:00 PM</md-option>
+        <md-option value="19:30:00">7:30 PM</md-option>
+        <md-option value="20:00:00">8:00 PM</md-option>
+        <md-option value="20:30:00">8:30 PM</md-option>
+        <md-option value="21:00:00">9:00 PM</md-option>
+        <md-option value="21:30:00">9:30 PM</md-option>
+        <md-option value="22:00:00">10:00 PM</md-option>
+        <md-option value="22:30:00">10:30 PM</md-option>
+        <md-option value="23:00:00">11:00 PM</md-option>
+        <md-option value="23:30:00">11:30 PM</md-option>
+        <md-option value="00:00:00">12:00 AM</md-option>
+        <md-option value="00:30:00">12:30 AM</md-option>
+        <md-option value="01:00:00">1:00 AM</md-option>
+        <md-option value="01:30:00">1:30 AM</md-option>
+        <md-option value="02:00:00">2:00 AM</md-option>
+        <md-option value="02:30:00">2:30 AM</md-option>
+        <md-option value="03:00:00">3:00 AM</md-option>
+        <md-option value="03:30:00">3:30 AM</md-option>
+        <md-option value="04:00:00">4:00 AM</md-option>
+        <md-option value="04:30:00">4:30 AM</md-option>
+        <md-option value="05:00:00">5:00 AM</md-option>
+        <md-option value="05:30:00">5:30 AM</md-option>
+        <md-option value="06:00:00">6:00 AM</md-option>
+        <md-option value="06:30:00">6:30 AM</md-option>
+        <md-option value="07:00:00">7:00 AM</md-option>
+        <md-option value="07:30:00">7:30 AM</md-option>
+        <md-option value="08:00:00">8:00 AM</md-option>
+        <md-option value="08:30:00">8:30 AM</md-option>
+        <md-option value="09:00:00">9:00 AM</md-option>
+        <md-option value="09:30:00">9:30 AM</md-option>
+        <md-option value="10:00:00">10:00 AM</md-option>
+        <md-option value="10:30:00">10:30 AM</md-option>
+        <md-option value="11:00:00">11:00 AM</md-option>
+        <md-option value="11:30:00">11:30 AM</md-option>
+      </md-select>
+      </md-input-container>
+      <md-button ng-click="addEvent()" class="add-date">Add</md-button>
       <br>
       <br>
       <hr>
@@ -88,7 +91,7 @@
         <tr ng-repeat="event in events">
             <td>{{ event.day | date:'longDate' }}</td>
             <td>@ {{ displayTime(event.time) }}</td>
-            <td><button ng-click="deleteEvent(event)" type="button" class="remove-date">Remove</button></td>
+            <td><md-button ng-click="deleteEvent(event)">Remove</md-button></td>
          </tr>
       </tbody>
       </table>
@@ -97,11 +100,11 @@
       <img ng-show="file" ngf-thumbnail="file" width="100px">
       <br>
       <span>
-        <button ngf-select="upload($file)">Upload Thumnail Image (Optional)</button>
+        <md-button class="md-raised" ngf-select="upload($file)">Upload Thumnail Image (Optional)</md-button>
       </span>
       <br>
       <br>
-      <button ng-click='editSession(session)'>Edit Session</button>
+      <md-button class="md-raised" ng-click='editSession(session)'>Edit Session</md-button>
     </form>
 
   </div>

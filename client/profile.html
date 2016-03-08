@@ -54,16 +54,15 @@
           </md-input-container>
         </div>
 
-        <li class="registration"><button class="button" ng-click="delete(sessions[i])">Delete</button></li>
-
-        <li class="registration"><button class="button" ng-click="edit(sessions[i])">Edit</button>   <button class="button" ng-click="delete(sessions[i])">Delete</button></li>
+        <md-button ng-click="delete(sessions[i])">Delete</md-button>
+        <md-button ng-click="edit(sessions[i])">Edit</md-button>
 
       </ul>
 
     </div>
     <div class="card-buttons" ng-show="sessions.length">
-      <button type="button" ng-click="prevCard()">Previous</button>
-      <button type="button" ng-click="nextCard()">Next</button>
+      <md-button class="md-raised" type="button" ng-click="prevCard()">Previous</md-button>
+      <md-button class="md-raised" type="button" ng-click="nextCard()">Next</md-button>
     </div>
   </div>
 
@@ -90,9 +89,9 @@
 
           <li class="tutor content"><span class="bold">Tutor: </span>{{registered[j].tutor}}</li>
 
-          <li class="tutor content" ng-hide="reviewSubmitted">How do you like your tutor?
-            <md-input-container>
-            <label>Rating</label>
+          <!-- <li class="tutor content" ng-hide="reviewSubmitted">Rate your tutor</li> -->
+            <md-input-container ng-hide="reviewSubmitted">
+            <!-- <label>Rating</label> -->
               <md-select ng-model="review.rating">
                 <md-option value="1">*</md-option>
                 <md-option value="2">**</md-option>
@@ -100,8 +99,8 @@
                 <md-option value="4">****</md-option>
                 <md-option value="5">*****</md-option>
               </md-select>
+              <md-button ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Rate Your Tutor</md-button>
               </md-input-container>
-              <button class="button" ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Submit Rating</button>
 
           </li>
 
@@ -117,8 +116,8 @@
     </div>
 
     <div class="card-buttons" ng-show="registered.length">
-      <button type="button" ng-click="prevLearnCard()">Previous</button>
-      <button type="button" ng-click="nextLearnCard()">Next</button>
+      <md-button class="md-raised" type="button" ng-click="prevLearnCard()">Previous</md-button>
+      <md-button class="md-raised" type="button" ng-click="nextLearnCard()">Next</md-button>
     </div>
  </div>
   </div>
