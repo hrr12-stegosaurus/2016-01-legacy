@@ -34,6 +34,7 @@
       <li class="tutor content"><span class="bold">Tutor: </span>{{session.User.username}}</li>
 
       <md-input-container>
+      <label>Available Dates</label>
       <md-select ng-model="selected">
         <md-option ng-repeat="date in session.Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</md-option>
       </md-select>

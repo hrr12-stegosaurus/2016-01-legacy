@@ -45,6 +45,7 @@
 
           </li>
           <md-input-container>
+          <label>Dates</label>
           <md-select class="session-dates" ng-model="sessionDate">
 
             <md-option ng-repeat="date in sessions[i].Calendars" value={{date.day}}>{{date.day | date:'longDate'}} @ {{displayTime(date.time)}}</md-option>
