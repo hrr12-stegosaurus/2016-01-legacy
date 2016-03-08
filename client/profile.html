@@ -15,13 +15,19 @@
 
     <br>
 
+<!-- ***TEACHING*** -->
   <div class="teaching-container">
 
-    <h1 class="subhead">Teaching</h1>
-    <div class="sessionContainer">
-      <ul class="session" ng-class="session-{{session.category}}" ng-repeat="session in sessions | filter:filterBox | filter:sessionFilter | filter:filterOptions | orderBy:'startTime'">
-        <img ng-show="session.image!=NULL" class="photo" src="{{session.image}}" width="350px" height="200px">
-        <img ng-show="session.image==NULL" class="photo" src="images/{{session.category}}.jpg">
+    <h1 class="subhead" ng-show="sessions.length">Teaching</h1>
+
+    <div class="sessionContainer" ng-show="sessions.length">
+
+      <ul class="session" ng-class="session-{{sessions[i].category}}">
+
+        <img ng-show="session.image!=NULL" class="photo" src="{{sessions[0].image}}" width="350px" height="200px">
+
+        <img ng-show="sessions.image==NULL" class="photo" src="images/{{sessions[i].category}}.jpg">
+
         <div class="sessionDetails">
 
           <li class="topic content">{{sessions[i].topic}}</li>
@@ -30,12 +36,6 @@
           <li class="category content">
 
             <span class="bold">Category: </span>{{sessions[i].category}}
-
-          </li>
-
-          <li class="tutor content">
-
-            <span class="bold">Tutor: </span>{{sessions[i].User.username}}
 
           </li>
 
@@ -56,11 +56,13 @@
       <button type="button" ng-click="prevCard()">Previous</button>
       <button type="button" ng-click="nextCard()">Next</button>
     </div>
+  </div>
 
-
+<!-- ***LEARNING*** -->
 <div class="teaching-container" ng-show="registered.length">
 
     <h1 class="subhead" ng-show="registered.length">Learning</h1>
+    
     <div class="sessionContainer">
 
       <ul class="session" ng-class="session-{{registered[j].category}}">
@@ -88,7 +90,7 @@
                 <option value="4">****</option>
                 <option value="5">*****</option>
               </select>
-              <button class="button" ng-click="submitReview(session.tutorId); reviewSubmitted=true">Rate {{session.tutor | limitTo: 10}}{{session.tutor.length > 8 ? '...' : ''}}</button>
+              <button class="button" ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Rate {{registered[j].tutor | limitTo: 10}}{{registered[j].tutor.length > 8 ? '...' : ''}}</button>
             </form>
           </li>
 
@@ -107,4 +109,6 @@
       <button type="button" ng-click="prevLearnCard()">Previous</button>
       <button type="button" ng-click="nextLearnCard()">Next</button>
     </div>
+ </div>
+  </div>   
 </div>
