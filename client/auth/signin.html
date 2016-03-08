@@ -3,6 +3,9 @@
   <div class="headerBar"></div>
   <div class="formContainer" id='signin'>
     <h1 class="subhead">Sign In</h1>
+    <p>If you do not have an account, <a href="#/signup">Sign Up</a> here.</p>
+    <br>
+    <br>
     <form name="signinForm" ng-submit='signin(user)'>
       <label>Email </label><br>
       <input type='text' ng-model='user.email' required>
@@ -11,11 +14,10 @@
       <label>Password </label><br>
       <input type="password" ng-model='user.password' required><br>
       <br>
-      <button class="submit">Sign In</button>
+      <md-button class="md-raised submit">Sign In</md-button>
     </form>
     <br>
     <a href="/auth/facebook"><img src="../images/fblogin.png" class="btn btn-primary"><span class=" fa fa-facebook"></span></a>
-    <br>
-    <p>If you do not have an account, <a href="#/signup">Sign Up</a> here.</p>
+
   </div>
 </div>
