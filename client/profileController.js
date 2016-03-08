@@ -1,4 +1,5 @@
-myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar, Review, $window) {
+
+myApp.controller('ProfileController', function ($http, $rootScope, $scope, $window, Session, Auth, Calendar, $timeout, Review) {
   $scope.sessions;
   $scope.username;
   $scope.email;
@@ -26,19 +27,29 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
         Session.getUserSessions(user.config.data.userId, function(sessions) {
 
           $scope.sessions = sessions;
-        });
+
+          for (var i = 0; i < $scope.sessions.length; i++) {
+            var count = 1;
+            for (var j = 0; j < $scope.sessions[i].Calendars.length; j++) {
+              $scope.sessions[i].Calendars[j].iden = count;
+              count++;
+            }
+          }
+        })
         Session.getRegistered(user.config.data.userId, function(registered) {
           $scope.registered = registered;
-        });
-      });
-    });
-  };
+        })
+      })
+    })
+  }
+
 
   $scope.delete = function (session) {
     Session.deleteSession(session, function(data) {
       $scope.getUser();
     });
   }
+
 
   $scope.deleteAccount = function(){
     Auth.getSignedInUser().then(function(user){
@@ -85,6 +96,12 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
     console.log('$scope.rating: ', $scope.review.rating, ', userId: ', userId)
     Review.sendReviewToServer({rating, userId});
   };
+
+  $scope.edit = function (session) {
+    $window.location.href = '/#/edit';
+    $timeout( function() { $rootScope.$emit('edit', session); }, 1);
+  }
+
 
   $scope.getUser();
 })
