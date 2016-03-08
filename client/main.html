@@ -43,7 +43,7 @@
       <li class="tutor content" ng-show="averageRatings[session.User.id]">{{session.User.username}} is rated at {{averageRatings[session.User.id]}} stars</li>
       <li class="tutor content" ng-hide="averageRatings[session.User.id]">{{session.User.username}} has not been reviewed yet</li>
 
-        <div id="rating">
+<!--         <div id="rating">
           <form>
             <select name="rating" ng-model="review.rating">
               <option value="1">*</option>
@@ -54,7 +54,7 @@
             </select>
             <button class="button" ng-click="submitReview(session.User.id)">Rate {{session.User.username | limitTo: 10}}{{session.User.username.length > 8 ? '...' : ''}}</button>
           </form>
-        </div>
+        </div> -->
 
       <li class="time content"><span class="bold"></span></li>
     </div>

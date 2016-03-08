@@ -1,41 +1,44 @@
-myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar, $window) {
+myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar, Review, $window) {
   $scope.sessions;
   $scope.username;
   $scope.email;
   $scope.age;
   $scope.userId;
   $scope.registered;
+  $scope.averageRating;
+  $scope.review = { rating: null };
+  $scope.reviewSubmitted = false;
 
   $scope.displayTime = function(time){
     return Calendar.displayTime(time);
-  }
+  };
 
   $scope.getUser = function() {
     Auth.getSignedInUser().then(function (user) {
-      console.log('DATA: ', user.data.UserId)
       Auth.getUser(user.data.UserId, function(user) {
-
         $scope.age = user.data[0].createdAt;
         $scope.username = user.data[0].username;
         $scope.email = user.data[0].email;
+        Review.getReviewsFromServer(user.data[0].id).then(function(averageRatings) {
+          $scope.averageRating = averageRatings[user.data[0].id];
+          console.log('$scope.averageRating inside getAverageRatings function: ', $scope.averageRating)
+        });
         Session.getUserSessions(user.config.data.userId, function(sessions) {
 
           $scope.sessions = sessions;
-        })
+        });
         Session.getRegistered(user.config.data.userId, function(registered) {
           $scope.registered = registered;
-
-        })
-      })
-    })
-  }
+        });
+      });
+    });
+  };
 
   $scope.delete = function (session) {
     Session.deleteSession(session, function(data) {
       $scope.getUser();
     });
   }
-
 
   $scope.deleteAccount = function(){
     Auth.getSignedInUser().then(function(user){
@@ -76,6 +79,12 @@ myApp.controller('ProfileController', function ($scope, Session, Auth, Calendar,
     }
   }
 
+  // Send reviews to server/db. Object with rating and userId properties.
+  $scope.submitReview = function (userId) {
+    var rating = $scope.review.rating;
+    console.log('$scope.rating: ', $scope.review.rating, ', userId: ', userId)
+    Review.sendReviewToServer({rating, userId});
+  };
 
   $scope.getUser();
 })

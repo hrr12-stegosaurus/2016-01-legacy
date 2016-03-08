@@ -237,7 +237,8 @@ input.keywordFilter {
   display: inline-block;
   border-radius: 10px;
   max-width: 350px;
-  /*width: 30%;*/
+  min-width: 350px;
+/*  width: 30%;*/
   height: 530px;
   position: relative;
   border: 1px solid #ccc;
