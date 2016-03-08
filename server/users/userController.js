@@ -1,5 +1,6 @@
 var User = require('../../db/models').User;
 var Session = require('../../db/models').Session;
+var Registered = require('../../db/models').Registered;
 
 module.exports.newUser = function (req, res){
 
@@ -80,10 +81,25 @@ module.exports.getUser = function(req, res) {
 };
 
 module.exports.deleteUser = function(req, res){
-  console.log(req.body,'*************')
   User.findById(req.body.userId).then(function(user){
     return user.destroy();
-  }).then(function(){
-    res.redirect('/#/')
   })
+  Session.findAll( {where: {userId: req.body.userId}})
+    .then(function(sessions){
+      for(var i=0; i<sessions.length; i++){
+        sessions[i].destroy()
+      }
+    }).catch(function (err) {
+      console.error(err);
+      res.end();
+    });
+  Registered.findAll( {where: {tutorId: req.body.userId}})
+    .then(function(sessions){
+      for(var i=0; i<sessions.length; i++){
+        sessions[i].destroy()
+      }
+    }).catch(function (err) {
+      console.error(err);
+      res.end();
+    });
 }
