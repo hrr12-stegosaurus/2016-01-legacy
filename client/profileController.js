@@ -1,5 +1,5 @@
 
-myApp.controller('ProfileController', function ($http, $rootScope, $scope, $window, Session, Auth, Calendar, $timeout) {
+myApp.controller('ProfileController', function ($http, $rootScope, $scope, $window, Session, Auth, Calendar, $timeout, Review) {
   $scope.sessions;
   $scope.username;
   $scope.email;
