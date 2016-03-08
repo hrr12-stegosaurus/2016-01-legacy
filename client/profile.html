@@ -88,16 +88,18 @@
           <li class="tutor content"><span class="bold">Tutor: </span>{{registered[j].tutor}}</li>
 
           <li class="tutor content" ng-hide="reviewSubmitted">How do you like your tutor?
-            <form>
-              <select name="rating" ng-model="review.rating">
-                <option value="1">*</option>
-                <option value="2">**</option>
-                <option value="3">***</option>
-                <option value="4">****</option>
-                <option value="5">*****</option>
-              </select>
-              <button class="button" ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Rate {{registered[j].tutor | limitTo: 10}}{{registered[j].tutor.length > 8 ? '...' : ''}}</button>
-            </form>
+            <md-input-container>
+            <label>Rating</label>
+              <md-select ng-model="review.rating">
+                <md-option value="1">*</md-option>
+                <md-option value="2">**</md-option>
+                <md-option value="3">***</md-option>
+                <md-option value="4">****</md-option>
+                <md-option value="5">*****</md-option>
+              </md-select>
+              </md-input-container>
+              <button class="button" ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Submit Rating</button>
+
           </li>
 
           <li class="tutor content" ng-show="reviewSubmitted">Review submitted</li>
