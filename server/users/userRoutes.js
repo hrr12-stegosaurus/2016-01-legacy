@@ -17,4 +17,6 @@ module.exports = function (app){
 
 	app.post('/getUser', userController.getUser);
 
+	app.delete('/deleteUser', userController.deleteUser);
+
 };

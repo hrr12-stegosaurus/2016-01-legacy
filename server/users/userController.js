@@ -78,3 +78,12 @@ module.exports.getUser = function(req, res) {
       res.end();
     });
 };
+
+module.exports.deleteUser = function(req, res){
+  console.log(req.body,'*************')
+  User.findById(req.body.userId).then(function(user){
+    return user.destroy();
+  }).then(function(){
+    res.redirect('/#/')
+  })
+}
