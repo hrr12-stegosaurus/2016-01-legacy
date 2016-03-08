@@ -1,6 +1,6 @@
 
 <div class="imageContainer">
-  <p class="intro" id="introBig">Share your knowledge or learn something new. It’s easy and fun to connect in<br>30-minute, one-on-one tutoring sessions for just $10. If you have a skill to share, sign up and create a session.<br>If you want to learn, select an available date and register for the session.</p>
+  <p class="intro" id="introBig">Share your knowledge or learn something new. It’s easy and fun to connect in<br>30-minute, one-on-one tutoring sessions.</p>
   <div class="filtersContainer">
     <div class="select">
       <span class="arrow"></span>
@@ -41,8 +41,8 @@
 
       <md-button class="md-raised" href="#/payment" ng-click="register(session, selected)">Register</md-button>
 
-      <li class="tutor content" ng-show="averageRatings[session.User.id]">{{session.User.username}} is rated at {{averageRatings[session.User.id]}} stars</li>
-      <li class="tutor content" ng-hide="averageRatings[session.User.id]">{{session.User.username}} has not been reviewed yet</li>
+      <li class="tutor content" ng-show="averageRatings[session.User.id]"><span style="font-style: italic;">{{session.User.username}} is rated at {{averageRatings[session.User.id]}} stars</span></li>
+      <li class="tutor content" ng-hide="averageRatings[session.User.id]"><span style="font-style: italic">{{session.User.username}} has not been rated yet</span></li>
 
   </ul>
 </div>
