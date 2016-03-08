@@ -5,7 +5,12 @@ myApp.controller('SignupController', function ($scope, $window, Auth) {
   $scope.signup = function(user) {
     Auth.signup(user).then(function(data){
       // redirect
-    	$window.location.href = '/#/signin';
+    	//$window.location.href = '/#/signin';
+      Auth.signin(user).then(function (data){
+          Auth.setLoggedIn(true);
+          // redirect
+          $window.location.href = '/#/profile';
+      });
     });
   };
 });
