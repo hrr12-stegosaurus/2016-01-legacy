@@ -62,8 +62,8 @@
 
     </div>
     <div class="card-buttons" ng-show="sessions.length">
-      <button type="button" ng-click="prevCard()">Previous</button>
-      <button type="button" ng-click="nextCard()">Next</button>
+      <button md-button class="md-raised" type="button" ng-click="prevCard()">Previous</button>
+      <button md-button class="md-raised" type="button" ng-click="nextCard()">Next</button>
     </div>
   </div>
 
@@ -101,7 +101,7 @@
                 <md-option value="5">*****</md-option>
               </md-select>
               </md-input-container>
-              <button class="button" ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Submit Rating</button>
+              <button md-button class="md-raised"  ng-click="submitReview(registered[j].tutorId); reviewSubmitted=true">Submit Rating</button>
 
           </li>
 
@@ -117,8 +117,8 @@
     </div>
 
     <div class="card-buttons" ng-show="registered.length">
-      <button type="button" ng-click="prevLearnCard()">Previous</button>
-      <button type="button" ng-click="nextLearnCard()">Next</button>
+      <button md-button class="md-raised" type="button" ng-click="prevLearnCard()">Previous</button>
+      <button md-button class="md-raised" type="button" ng-click="nextLearnCard()">Next</button>
     </div>
  </div>
   </div>
