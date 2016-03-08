@@ -57,7 +57,7 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
 
   $scope.review = { rating: null };
   $scope.allRatings = {};
-  $scope.averageRating = {};
+  $scope.averageRatings = {};
 
   // Send reviews to server/db. Object with rating and userId properties.
   $scope.submitReview = function (userId) {
@@ -66,38 +66,10 @@ myApp.controller('SessionController', function ($scope, Session, Auth, Review, $
     $scope.getAllReviews();
   };
 
-  // Get all reviews from server/db.
+  // Get average ratings for user.
   $scope.getAllReviews = function (userId) {
-    Review.getReviewsFromServer(userId, function(reviews) {
-
-      var reviews = reviews.data.reviews;
-
-      // Store an all of user's ratings in an array on the $allRatings object.
-      // The user's userId is the key.
-      for (var i = 0; i < reviews.length; i++) {
-        var review = reviews[i];
-        var userId = review.UserId;
-        if ($scope.allRatings[userId] === undefined) {
-          $scope.allRatings[userId] = [];
-        }
-        $scope.allRatings[userId].push(review.rating);
-      }
-
-      // Calculate the average of all the user's ratings. STore on $scope.averageRating.
-      // The user's userId is the key.
-      for (var key in $scope.allRatings) {
-        console.log('$scope.allRatings[key]', $scope.allRatings[key])
-        var userRatings = $scope.allRatings[key];
-        var total = 0;
-        var average;
-        for (var i = 0; i < userRatings.length; i++) {
-          var rating = userRatings[i];
-          total += rating;
-        }
-        average = Math.floor(total / userRatings.length);
-        console.log('average: ', average);
-        $scope.averageRating[key] = average;
-      }
+    Review.getReviewsFromServer(userId).then(function(averageRatings) {
+      $scope.averageRatings = averageRatings;
     });
   };
 

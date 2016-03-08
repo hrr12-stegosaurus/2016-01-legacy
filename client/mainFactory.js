@@ -229,6 +229,8 @@ myApp.factory('Review', function($http, $location) {
     });
   };
 
+  // Get all reviews from server, calculate average rating for each user.
+  // Return averageRatings object.
   var getReviewsFromServer = function(userId, callback) {
     return $http({
       method: 'POST',
@@ -237,7 +239,35 @@ myApp.factory('Review', function($http, $location) {
     })
     .then(function(query) {
       var reviews = query.data.reviews;
-      callback(query);
+      var allRatings = {};
+      var averageRatings = {};
+
+      // Store an all of user's ratings in an array on the $allRatings object.
+      // The user's userId is the key.
+      for (var i = 0; i < reviews.length; i++) {
+        var review = reviews[i];
+        var userId = review.UserId;
+        if (allRatings[userId] === undefined) {
+          allRatings[userId] = [];
+        }
+        allRatings[userId].push(review.rating);
+      }
+
+      // Calculate the average of all the user's ratings. STore on $scope.averageRatings.
+      // The user's userId is the key.
+      for (var key in allRatings) {
+
+        var userRatings = allRatings[key];
+        var total = 0;
+        var average;
+        for (var i = 0; i < userRatings.length; i++) {
+          var rating = userRatings[i];
+          total += rating;
+        }
+        average = Math.floor(total / userRatings.length);
+        averageRatings[key] = average;
+        return averageRatings;
+      }
     });
   };
 
